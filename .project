@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
 	<name>trabalho-final-java1</name>
+=======
+	<name>ProjetoFinalPOO</name>
+>>>>>>> 0f9770712b696b5d38f6cbdd43d8605e52f1cfb5
 	<comment></comment>
 	<projects>
 	</projects>
 	<buildSpec>
+<<<<<<< HEAD
 	</buildSpec>
 	<natures>
+=======
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+>>>>>>> 0f9770712b696b5d38f6cbdd43d8605e52f1cfb5
 	</natures>
 </projectDescription>
