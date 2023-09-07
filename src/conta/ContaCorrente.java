@@ -1,4 +1,4 @@
-package src.conta;
+package conta;
 
 public class ContaCorrente {
 
