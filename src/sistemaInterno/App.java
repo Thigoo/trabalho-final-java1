@@ -66,10 +66,10 @@ public class App {
 			cpf = leitor.nextLong();
 
 			System.out.print("Crie uma senha: ");
-			s = leitor.nextLine();
+			s = leitor.next();
 
 			System.out.print("Confirme sua senha: ");
-			senha = leitor.nextLine();
+			senha = leitor.next();
 
 			if (s != senha) {
 				System.out.println("As senhas não conferem, tente novamente.");
