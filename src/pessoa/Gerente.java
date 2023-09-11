@@ -1,4 +1,6 @@
-package funcionario;
+package pessoa;
+
+
 
 public class Gerente {
 

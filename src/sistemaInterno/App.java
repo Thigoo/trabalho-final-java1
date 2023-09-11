@@ -13,7 +13,7 @@ public class App {
 		Scanner leitor = new Scanner(System.in);
 		int opcao;
 		long cpf;
-		String senha, s;
+		int senha, s;
 
 		System.out.println("****************************************************");
 		System.out.println("******** Bem vindo(a) ao banco Bancursinho *********");
@@ -35,7 +35,7 @@ public class App {
 		System.out.println("****************************************************");
 
 		System.out.println("O que deseja fazer?");
-		System.out.println("1 - Logar \n2 - Abertura de conta");
+		System.out.println("1 - Logar \n2 - Abertura de conta \n3 - Sair");
 
 		System.out.print("Escolha: ");
 		opcao = leitor.nextInt();
@@ -47,9 +47,9 @@ public class App {
 			cpf = leitor.nextLong();
 
 			System.out.print("Digite sua senha: ");
-			senha = leitor.next();
+			senha = leitor.nextInt();
 
-			if (cpf != 0 && senha != "") {
+			if (cpf != 0 && senha != 0) {
 				System.out.println("\nLogin efetuado com sucesso!");
 			} else {
 				System.out.println("Os dados não conferem, tente novamente.");
@@ -66,18 +66,23 @@ public class App {
 			cpf = leitor.nextLong();
 
 			System.out.print("Crie uma senha: ");
-			s = leitor.next();
+			s = leitor.nextInt();
 
 			System.out.print("Confirme sua senha: ");
-			senha = leitor.next();
+			senha = leitor.nextInt();
 
-			if (s != senha) {
-				System.out.println("As senhas não conferem, tente novamente.");
-			} else {
+			if (s == senha) {
 				System.out.println("Conta criada com sucesso! Bem vindo(a) ao banco Bancursinho");
+				imprimirMenu();				
+			} else {
+				System.out.println(s == senha);
+				System.out.println("As senhas não conferem, tente novamente.");
 			}
-
-			imprimirMenu();
+			
+		case 3:	
+			
+			System.out.println("\nObrigado! Por usar nosso banco\n");
+			logar();
 
 			break;
 
