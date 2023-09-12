@@ -27,12 +27,17 @@
 
 package sistemaInterno;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import agencia.ETipoAgencia;
 import conta.Conta;
 import conta.ContaCorrente;
 import conta.ETipoConta;
+import cliente.Cliente;
+import conta.Conta;
+import funcionario.Funcionario;
 import funcionario.Gerente;
 import pessoa.ETipoAcesso;
 import pessoa.Pessoa;
@@ -50,6 +55,19 @@ public class App {
 
 	public static void logar(Pessoa pessoa) {
 
+	}
+	
+	/*public static List<Conta> totalContas (List<Conta> contas, ETipoAgencia tipoAgencia){
+		List<Conta> listaContas = new ArrayList<Conta>();
+		for ( int i=0; i<contas.size(); i++) {
+			if (contas.get(i).getIdAgencia().getIdAgencia() == tipoAgencia.getIdAgencia() ) {
+				listaContas.add(contas.get(i));
+			}
+		}
+		return listaContas;*/
+	
+	public static void logar(Pessoa pessoa) {		
+		
 		Scanner leitor = new Scanner(System.in);
 		int opcao;
 
@@ -180,6 +198,7 @@ public class App {
 
 		System.out.println("\n****************  Menu  *****************\n");
 		System.out.println("1 - Movimentações na conta \n2 - Relatórios \n");
+		System.out.print("Escolha: ");
 		opcaoMenu = leitor.nextInt();
 
 		switch (opcaoMenu) {
