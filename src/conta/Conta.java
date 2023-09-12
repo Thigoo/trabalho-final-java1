@@ -10,8 +10,8 @@ import conta.Movimentacao;
 import conta.ETipoMovimentacao;
 
 public abstract class Conta {
-	protected int cpf;
-	protected int senha;
+	protected String cpf;
+	protected String senha;
 	protected ETipoAgencia IdAgencia;
 	protected double totalGastosDeposito = 0.0;
 	protected double totalGastosSaque = 0.0;
@@ -26,7 +26,7 @@ public abstract class Conta {
 	
 	protected List<Movimentacao> movimentacoes;
 	
-	public Conta(int cpf, int senha, double saldoAbertura, ETipoConta tipoConta, ETipoAgencia idAgencia) {
+	public Conta(String cpf, String senha, double saldoAbertura, ETipoConta tipoConta, ETipoAgencia idAgencia) {
 		this.cpf = cpf;
 		this.senha = senha;
 		this.IdAgencia = idAgencia;
@@ -42,19 +42,19 @@ public abstract class Conta {
         movimentacoes.add(movimentacao);
 	}
 
-	public int getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(int cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
-	public int getSenha() {
+	public String getSenha() {
 		return senha;
 	}
 
-	public void setSenha(int senha) {
+	public void setSenha(String senha) {
 		this.senha = senha;
 	}
 

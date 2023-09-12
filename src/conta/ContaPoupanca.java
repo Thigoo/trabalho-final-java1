@@ -6,9 +6,8 @@ import ConversorData.ConverteData;
 import agencia.ETipoAgencia;
 
 public class ContaPoupanca extends Conta {
-	
-	
-	public ContaPoupanca(int cpf, int senha, double saldoAbertura, ETipoConta tipoConta, ETipoAgencia idAgencia) {
+
+	public ContaPoupanca(String cpf, String senha, double saldoAbertura, ETipoConta tipoConta, ETipoAgencia idAgencia) {
 		super(cpf, senha, saldoAbertura, tipoConta, idAgencia);
 	}
 

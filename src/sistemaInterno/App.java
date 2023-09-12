@@ -24,35 +24,35 @@
 ////		}
 ////		return valorDinheiro;
 ////	}
-	
+
 package sistemaInterno;
 
 import java.util.Scanner;
 
 import agencia.ETipoAgencia;
-import cliente.Cliente;
-import funcionario.Funcionario;
+import conta.Conta;
+import conta.ContaCorrente;
+import conta.ETipoConta;
 import funcionario.Gerente;
 import pessoa.ETipoAcesso;
 import pessoa.Pessoa;
 
 public class App {
 
-	
 	public static void main(String[] args) {
-		Gerente gerente = new Gerente("Fulano", "12345678910", "123", "fulano@email.com", "22442244", ETipoAcesso.GERENTE, ETipoAgencia.AGENCIA_BANCURSINHO_CENTRO);
-//		Cliente c = new Cliente();
+		Gerente gerente = new Gerente("Fulano", "12345678910", "123", "fulano@email.com", "22442244",
+				ETipoAcesso.GERENTE, ETipoAgencia.AGENCIA_BANCURSINHO_CENTRO);
+		// Cliente c = new Cliente();
+		//logar(gerente);
 		logar(gerente);
-		
-		
+
 	}
-		
-	public static void logar(Pessoa pessoa) {		
-		
+
+	public static void logar(Pessoa pessoa) {
+
 		Scanner leitor = new Scanner(System.in);
 		int opcao;
-		
-		
+
 		System.out.println("****************************************************");
 		System.out.println("******** Bem vindo(a) ao banco Bancursinho *********");
 		System.out.println("****************************************************");
@@ -72,132 +72,158 @@ public class App {
 		System.out.println("                      ▌▒▒▒▒▄▄▒▒▒▐                   ");
 		System.out.println("****************************************************");
 
-		
-		System.out.println("1 - Logar como funcionário \n2 - Logar como Cliente");
-		System.out.print("Escolha: ");
-		opcao = leitor.nextInt();
-		
-		switch (opcao) {
-		
-		case 1:
-			Scanner leitor2 = new Scanner(System.in);
-			String cpf, senha;
-			System.out.println("Por favor, digite seu cpf:");
-			cpf = leitor2.nextLine();
-			System.out.println("Digite sua senha: ");
-			senha = leitor2.nextLine();
-			
-			if(cpf.equals(pessoa.getCpf()) && senha.equals(pessoa.getSenha())) {
-				System.out.println("\nLogin efetuado com sucesso!");
-				imprimirMenu();
-			} else {
-				System.out.println("Os dados não conferem, tente novamente.");
-			}			
-			
-			
-			break;
-			
-		case 2:
-			
-//			System.out.println("Ok, preencha os dados para abrir sua conta.");
-//			System.out.println("Qual o seu cpf? ");
-//			cpf = leitor.nextLine();
-//			System.out.println("Crie uma senha: ");
-//			s = leitor.nextLine();
-//			System.out.println("Confirme sua senha: ");
-//			senha = leitor.nextLine();
-//			if(s != senha ) {
-//				System.out.println("As senhas não conferem, tente novamente.");
-//			} else {
-//				System.out.println("Conta criada com sucesso! Bem vindo(a) ao banco Bancursinho");
-//			}
-//			
-//			imprimirMenu();
-			
-		default: 
-			break;
-			
+		String cpf, senha;
+
+		System.out.println("Por favor, digite seu cpf:");
+		cpf = leitor.nextLine();
+		System.out.println("Digite sua senha: ");
+		senha = leitor.nextLine();
+
+		if (cpf.equals(pessoa.getCpf()) && senha.equals(pessoa.getSenha())) {
+
+
+
+			System.out.println("\nLogin efetuado com sucesso!");
+			imprimirMenuCliente();
+
+
+		} else {
+
+			System.out.println("Os dados não conferem, tente novamente.");
 		}
-		leitor.close();
-}
-	
-	public static void imprimirMenu() {
+
+	} 
+
+	//		while (opcao >= 1 && opcao < 3) {
+	//
+	//			switch (opcao) {
+	//
+	//			case 1:
+	//				
+	//				Scanner leitor2 = new Scanner(System.in);
+	//				System.out.println("Por favor, digite seu cpf:");
+	//				cpf = leitor2.nextLine();
+	//				System.out.println("Digite sua senha: ");
+	//				senha = leitor2.nextLine();
+	//
+	//				if (cpf.equals(pessoa.getCpf()) && senha.equals(pessoa.getSenha())) {
+	//					if(pessoa.getAcesso().equals(leitor))
+	//					System.out.println("\nLogin efetuado com sucesso!");
+	//					imprimirMenuCliente();
+	//				} else {
+	//					System.out.println("Os dados não conferem, tente novamente.");
+	//				}
+	//
+	//				break;
+	//
+	//			case 2:
+
+	//				System.out.println("\n********** Menu cliente **********\n");
+	//				System.out.println("1 - Movimentações \n2 - Relatórios");
+	//				opcao = leitor.nextInt();
+	//				if (opcao == 1) {
+	//					System.out.println("1 - Saque \n2 - Depósito \n3 - Transferência");
+	//				}
+	//
+	//				s = leitor.nextLine();
+	//				System.out.println("Confirme sua senha: ");
+	//				senha = leitor.nextLine();
+	//				if (s != senha) {
+	//					System.out.println("As senhas não conferem, tente novamente.");
+	//				} else {
+	//					System.out.println("Conta criada com sucesso! Bem vindo(a) ao banco Bancursinho");
+	//				}
+	//				break;
+	//			case 3:
+	//				leitor.close();
+	//				break;
+	//
+	//			default:
+	//				System.out.println("Opção inválida!");
+	//				break;
+	//
+	//			}
+	//		}
+	//		System.out.println("Obrigado por utilizar nosso sistema");
+	//		
+	//		leitor.close();
+	//	}
+
+	//	
+	//		Scanner leitor2 = new Scanner(System.in);
+	//		String cpf, senha;
+	//		System.out.println("Por favor, digite seu cpf:");
+	//		cpf = leitor2.nextLine();
+	//		System.out.println("Digite sua senha: ");
+	//		senha = leitor2.nextLine();
+	//
+	//		if (cpf.equals(pessoa.getCpf()) && senha.equals(pessoa.getSenha())) {
+	//			System.out.println("\nLogin efetuado com sucesso!");
+	//			imprimirMenuCliente();
+	//		} else {
+	//			System.out.println("Os dados não conferem, tente novamente.");
+	//		}
+	//	}
+	//	
+	public static void imprimirMenuCliente() {
+
+		Conta cliente = new ContaCorrente("12345678910", "123", 2000, ETipoConta.CONTA_CORRENTE, ETipoAgencia.AGENCIA_BANCURSINHO_CENTRO);
+		Conta cliente2 = new ContaCorrente("12345678910", "321", 5000, ETipoConta.CONTA_CORRENTE, ETipoAgencia.AGENCIA_BANCURSINHO_CENTRO);
+
+		
 		
 		Scanner leitor = new Scanner(System.in);
 		int opcaoMenu, opcaoMov;
+		double valorSaque, valorDeposito, valorTransferencia;
+		Conta conta;
 		
+
 		System.out.println("\n****************  Menu  *****************\n");
 		System.out.println("1 - Movimentações na conta \n2 - Relatórios \n");
 		opcaoMenu = leitor.nextInt();
-		
-		switch (opcaoMenu) {		
-		
-		case 1:
-			
-			System.out.println("1 - Saque \n2 - Depósito \n 3 - Transferência para outra conta");
-			opcaoMov = leitor.nextInt();
-			
-			switch (opcaoMov) {
-			
-			case 1:
-				System.out.println("Fazer saldo.");
-				break;
-				
-			case 2:
-				System.out.println("Fazer depósito.");			
-				break;
-				
-			case 3:
-				System.out.println("Fazer transferência.");
-			}			
 
-			default:
+		switch (opcaoMenu) {
+
+		case 1:
+
+			System.out.println("1 - Saque \n2 - Depósito \n3 - Transferência");
+			opcaoMov = leitor.nextInt();
+
+			switch (opcaoMov) {
+
+			case 1:
+				
+				System.out.println("Valor do saque: ");
+				valorSaque = leitor.nextDouble();
+				cliente.sacar(valorSaque);
+				System.out.println(cliente.getSaldo());
 				break;
-			
+
+			case 2:
+				
+				System.out.println("Valor depósito.");
+				valorDeposito = leitor.nextDouble();
+				cliente.depositar(valorDeposito);
+				System.out.println(cliente.getSaldo());									
+				break;
+
+			case 3:
+				
+				System.out.println("Fazer transferência.");
+				valorTransferencia = leitor.nextDouble();
+				System.out.println("Conta destino");
+				
+			}
+
+		default:
+			break;
+
 		case 2:
-			
+
 			System.out.println("1 - Saldo \n");
-			
+
 		}
 		leitor.close();
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

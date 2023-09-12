@@ -7,10 +7,9 @@ import agencia.ETipoAgencia;
 
 public class ContaCorrente extends Conta {
 	
-	
-
-	public ContaCorrente(int cpf, int senha, double saldoAbertura, ETipoConta tipoConta, ETipoAgencia idAgencia) {
+	public ContaCorrente(String cpf, String senha, double saldoAbertura, ETipoConta tipoConta, ETipoAgencia idAgencia) {
 		super(cpf, senha, saldoAbertura, tipoConta, idAgencia);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
