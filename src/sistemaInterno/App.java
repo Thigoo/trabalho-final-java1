@@ -38,13 +38,10 @@ import pessoa.Pessoa;
 
 public class App {
 
-	
 	public static void main(String[] args) {
 		Gerente gerente = new Gerente("Fulano", "12345678910", "123", "fulano@email.com", "22442244", ETipoAcesso.GERENTE, ETipoAgencia.AGENCIA_BANCURSINHO_CENTRO);
 //		Cliente c = new Cliente();
 		logar(gerente);
-		
-		
 	}
 		
 	public static void logar(Pessoa pessoa) {		
@@ -82,9 +79,9 @@ public class App {
 		case 1:
 			Scanner leitor2 = new Scanner(System.in);
 			String cpf, senha;
-			System.out.println("Por favor, digite seu cpf:");
+			System.out.print("Por favor, digite seu cpf:");
 			cpf = leitor2.nextLine();
-			System.out.println("Digite sua senha: ");
+			System.out.print("Digite sua senha: ");
 			senha = leitor2.nextLine();
 			
 			if(cpf.equals(pessoa.getCpf()) && senha.equals(pessoa.getSenha())) {
@@ -128,6 +125,7 @@ public class App {
 		
 		System.out.println("\n****************  Menu  *****************\n");
 		System.out.println("1 - Movimentações na conta \n2 - Relatórios \n");
+		System.out.print("Escolha: ");
 		opcaoMenu = leitor.nextInt();
 		
 		switch (opcaoMenu) {		
