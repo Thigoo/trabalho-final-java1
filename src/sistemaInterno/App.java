@@ -29,20 +29,29 @@ package sistemaInterno;
 
 import java.util.Scanner;
 
+import agencia.ETipoAgencia;
+import cliente.Cliente;
+import funcionario.Funcionario;
+import funcionario.Gerente;
+import pessoa.ETipoAcesso;
+import pessoa.Pessoa;
+
 public class App {
 
 	
 	public static void main(String[] args) {
+		Gerente gerente = new Gerente("Fulano", "12345678910", "123", "fulano@email.com", "22442244", ETipoAcesso.GERENTE, ETipoAgencia.AGENCIA_BANCURSINHO_CENTRO);
+//		Cliente c = new Cliente();
+		logar(gerente);
+		
+		
+	}
+		
+	public static void logar(Pessoa pessoa) {		
 		
 		Scanner leitor = new Scanner(System.in);
 		int opcao;
-		long cpf;
-		String senha, s;
 		
-		System.out.println("****************************************************");
-		System.out.println("******** Bem vindo(a) ao banco Bancursinho *********");
-		System.out.println("****************************************************");
-		System.out.println();
 		
 		System.out.println("****************************************************");
 		System.out.println("******** Bem vindo(a) ao banco Bancursinho *********");
@@ -64,50 +73,53 @@ public class App {
 		System.out.println("****************************************************");
 
 		
-		System.out.println("1 - Logar \n2 - Abertura de conta");
+		System.out.println("1 - Logar como funcionário \n2 - Logar como Cliente");
 		System.out.print("Escolha: ");
 		opcao = leitor.nextInt();
 		
 		switch (opcao) {
 		
 		case 1:
-			System.out.println("Por favor, digite seu cpf: ");
-			cpf = leitor.nextLong();
+			Scanner leitor2 = new Scanner(System.in);
+			String cpf, senha;
+			System.out.println("Por favor, digite seu cpf:");
+			cpf = leitor2.nextLine();
 			System.out.println("Digite sua senha: ");
-			senha = leitor.next();
+			senha = leitor2.nextLine();
 			
-			if(cpf != 0 && senha != "") {
+			if(cpf.equals(pessoa.getCpf()) && senha.equals(pessoa.getSenha())) {
 				System.out.println("\nLogin efetuado com sucesso!");
+				imprimirMenu();
 			} else {
 				System.out.println("Os dados não conferem, tente novamente.");
 			}			
-			imprimirMenu();
+			
 			
 			break;
 			
 		case 2:
 			
-			System.out.println("Ok, preencha os dados para abrir sua conta.");
-			System.out.println("Qual o seu cpf? ");
-			cpf = leitor.nextLong();
-			System.out.println("Crie uma senha: ");
-			s = leitor.nextLine();
-			System.out.println("Confirme sua senha: ");
-			senha = leitor.nextLine();
-			if(s != senha ) {
-				System.out.println("As senhas não conferem, tente novamente.");
-			} else {
-				System.out.println("Conta criada com sucesso! Bem vindo(a) ao banco Bancursinho");
-			}
-			
-			imprimirMenu();
+//			System.out.println("Ok, preencha os dados para abrir sua conta.");
+//			System.out.println("Qual o seu cpf? ");
+//			cpf = leitor.nextLine();
+//			System.out.println("Crie uma senha: ");
+//			s = leitor.nextLine();
+//			System.out.println("Confirme sua senha: ");
+//			senha = leitor.nextLine();
+//			if(s != senha ) {
+//				System.out.println("As senhas não conferem, tente novamente.");
+//			} else {
+//				System.out.println("Conta criada com sucesso! Bem vindo(a) ao banco Bancursinho");
+//			}
+//			
+//			imprimirMenu();
 			
 		default: 
 			break;
 			
 		}
 		leitor.close();
-	}
+}
 	
 	public static void imprimirMenu() {
 		

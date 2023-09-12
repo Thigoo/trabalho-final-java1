@@ -15,7 +15,13 @@ public abstract class Pessoa {
 	protected Date dataCadastro;
 	protected ETipoAcesso Acesso;
 	protected ETipoAgencia IdAgencia;
+
 	
+	
+	public Pessoa() {
+	}
+
+
 	public Pessoa(String nome, String cpf, String senha, String email, String telefone, ETipoAcesso acesso, ETipoAgencia idAgencia) {
 		this.nome = nome;
 		this.cpf = cpf;

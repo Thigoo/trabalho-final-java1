@@ -5,8 +5,11 @@ import conta.SeguroVida;
 import pessoa.ETipoAcesso;
 import pessoa.Pessoa;
 
-public class Cliente extends Pessoa {
-	
+public class Cliente extends Pessoa {	
+
+	public Cliente() {
+		super();
+	}
 
 	public Cliente(String nome, String cpf, String senha, String email, String telefone, ETipoAcesso acesso,
 			ETipoAgencia idAgencia) {
