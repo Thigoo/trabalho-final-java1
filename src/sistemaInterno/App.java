@@ -53,18 +53,7 @@ public class App {
 
 	}
 
-	public static void logar(Pessoa pessoa) {
 
-	}
-	
-	/*public static List<Conta> totalContas (List<Conta> contas, ETipoAgencia tipoAgencia){
-		List<Conta> listaContas = new ArrayList<Conta>();
-		for ( int i=0; i<contas.size(); i++) {
-			if (contas.get(i).getIdAgencia().getIdAgencia() == tipoAgencia.getIdAgencia() ) {
-				listaContas.add(contas.get(i));
-			}
-		}
-		return listaContas;*/
 	
 	public static void logar(Pessoa pessoa) {		
 		
@@ -231,6 +220,9 @@ public class App {
 				System.out.println("Fazer transferência.");
 				valorTransferencia = leitor.nextDouble();
 				System.out.println("Conta destino");
+				cliente.transferir(valorTransferencia, cliente2);
+				System.out.println(cliente.getSaldo());
+				System.out.println(cliente2.getSaldo());
 				
 			}
 
