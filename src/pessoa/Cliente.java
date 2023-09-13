@@ -25,4 +25,11 @@ public class Cliente extends Pessoa {
 	public SeguroVida getSeguroVida() {
 		return seguroVida;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "\nCliente [cpf=" + cpf + ", email=" + email + ", nome=" + nome + ", telefone=" + telefone + "]";
+	}
 }

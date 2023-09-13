@@ -27,6 +27,13 @@
 
 package sistemaInterno;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import conta.Conta;
@@ -40,24 +47,37 @@ import pessoa.Pessoa;
 
 public class App {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException{
 
-		Scanner leitor = new Scanner(System.in);
+		//Scanner leitor = new Scanner(System.in);
 
 		// ler o arquivo aqui
-		//String nome, String cpf, String email, String telefone, TipoAcessoEnum acesso,
-		//TipoAgenciaEnum idAgencia, SeguroVida seguroVida
-		Pessoa pessoa = new Cliente("fulano", "1", "@email", "22442244", TipoAcessoEnum.CLIENTE, TipoAgenciaEnum.AGENCIA_BANCURSINHO_BINGEN);
+		FileInputStream arquivo = new FileInputStream(new File("C:\\Users\\alber\\Desktop\\Contas\\Pessoas.txt"));
 		
-		
+				
+		Scanner leitor = new Scanner(arquivo,"UTF-8");
+		List<Cliente> clientes = new ArrayList<Cliente>();
+		while(leitor.hasNext()) {
+			String linha = leitor.nextLine();
+			if (linha != null && !linha.isEmpty()) {
+				String[] dados = linha.split("\\;");
+				
+				Pessoa cliente1 = new Cliente();
+				cliente1.setCpf(dados[0]);
+				cliente1.setEmail(dados[1]);
+				cliente1.setNome(dados[2]);
+				cliente1.setTelefone(dados[3]);
+				clientes.add((Cliente) cliente1);
+			}
+		}
 
-		System.out.println("Li o arquivo aqui!");
+		//System.out.println("Li o arquivo aqui!");
 
-		Menus menu = new Menus(conta, leitor);
-		menu.logar(conta2);
+		//Menus menu = new Menus(Fulano, leitor);
+		//menu.logar(conta2);
 
 		// escrever o arquivo aqui
-		System.out.println("Escrevi o arquivo aqui!");
+		System.out.println(clientes);
 
 		leitor.close();
 		
