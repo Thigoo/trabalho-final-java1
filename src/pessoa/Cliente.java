@@ -1,9 +1,8 @@
-package cliente;
+package pessoa;
 
-import agencia.ETipoAgencia;
 import conta.SeguroVida;
-import pessoa.ETipoAcesso;
-import pessoa.Pessoa;
+import enums.TipoAcessoEnum;
+import enums.TipoAgenciaEnum;
 
 public class Cliente extends Pessoa {	
 
@@ -11,8 +10,8 @@ public class Cliente extends Pessoa {
 		super();
 	}
 
-	public Cliente(String nome, String cpf, String senha, String email, String telefone, ETipoAcesso acesso,
-			ETipoAgencia idAgencia) {
+	public Cliente(String nome, String cpf, String senha, String email, String telefone, TipoAcessoEnum acesso,
+			TipoAgenciaEnum idAgencia) {
 		super(nome, cpf, senha, email, telefone, acesso, idAgencia);
 	}
 

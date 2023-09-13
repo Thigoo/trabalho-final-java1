@@ -2,8 +2,9 @@ package pessoa;
 
 import java.util.Date;
 
-import agencia.ETipoAgencia;
-import conta.ETipoConta;
+import enums.TipoAcessoEnum;
+import enums.TipoAgenciaEnum;
+import enums.TipoContaEnum;
 
 public abstract class Pessoa {
 	
@@ -13,13 +14,13 @@ public abstract class Pessoa {
 	protected String email;
 	protected String telefone;
 	protected Date dataCadastro;
-	protected ETipoAcesso Acesso;
-	protected ETipoAgencia IdAgencia;
+	protected TipoAcessoEnum Acesso;
+	protected TipoAgenciaEnum IdAgencia;
 	
 	public Pessoa() {
 	}
 
-	public Pessoa(String nome, String cpf, String senha, String email, String telefone, ETipoAcesso acesso, ETipoAgencia idAgencia) {
+	public Pessoa(String nome, String cpf, String senha, String email, String telefone, TipoAcessoEnum acesso, TipoAgenciaEnum idAgencia) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.senha = senha;
@@ -31,12 +32,12 @@ public abstract class Pessoa {
 	}
 
 	
-	public ETipoAcesso getAcesso() {
+	public TipoAcessoEnum getAcesso() {
 		return Acesso;
 	}
 
 
-	public ETipoAgencia getIdAgencia() {
+	public TipoAgenciaEnum getIdAgencia() {
 		return IdAgencia;
 	}
 

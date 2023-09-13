@@ -3,11 +3,12 @@ package conta;
 import java.util.Date;
 
 import ConversorData.ConverteData;
-import agencia.ETipoAgencia;
+import enums.TipoAgenciaEnum;
+import enums.TipoContaEnum;
 
 public class ContaPoupanca extends Conta {
 
-	public ContaPoupanca(String cpf, String senha, double saldoAbertura, ETipoConta tipoConta, ETipoAgencia idAgencia) {
+	public ContaPoupanca(String cpf, String senha, double saldoAbertura, TipoContaEnum tipoConta, TipoAgenciaEnum idAgencia) {
 		super(cpf, senha, saldoAbertura, tipoConta, idAgencia);
 	}
 

@@ -2,21 +2,21 @@ package conta;
 
 import java.util.Date;
 
-import conta.ETipoMovimentacao;
+import enums.TipoMovimentacaoEnum;
 
 public class Movimentacao {
 	
-	private ETipoMovimentacao tipo;
+	private TipoMovimentacaoEnum tipo;
     private Date dataHora;
     private double valor;
     
-	public Movimentacao(ETipoMovimentacao tipo, Date dataHora, double valor ) {
+	public Movimentacao(TipoMovimentacaoEnum tipo, Date dataHora, double valor ) {
 		this.tipo = tipo;
 		this.dataHora = dataHora;
 		this.valor = valor;
 	}
 
-	public ETipoMovimentacao getTipo() {
+	public TipoMovimentacaoEnum getTipo() {
 		return tipo;
 	}
 

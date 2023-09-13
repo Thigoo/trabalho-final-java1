@@ -3,11 +3,12 @@ package conta;
 import java.util.Date;
 
 import ConversorData.ConverteData;
-import agencia.ETipoAgencia;
+import enums.TipoAgenciaEnum;
+import enums.TipoContaEnum;
 
 public class ContaCorrente extends Conta {
 	
-	public ContaCorrente(String cpf, String senha, double saldoAbertura, ETipoConta tipoConta, ETipoAgencia idAgencia) {
+	public ContaCorrente(String cpf, String senha, double saldoAbertura, TipoContaEnum tipoConta, TipoAgenciaEnum idAgencia) {
 		super(cpf, senha, saldoAbertura, tipoConta, idAgencia);
 		// TODO Auto-generated constructor stub
 	}

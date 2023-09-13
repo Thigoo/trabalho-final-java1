@@ -5,19 +5,23 @@ import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.List;
 
-import agencia.ETipoAgencia;
 import conta.Movimentacao;
-import conta.ETipoMovimentacao;
+import enums.TipoAgenciaEnum;
+import enums.TipoContaEnum;
+import enums.TipoMovimentacaoEnum;
 
 public abstract class Conta {
 	protected String cpf;
 	protected String senha;
-	protected ETipoAgencia IdAgencia;
+	protected TipoAgenciaEnum IdAgencia;
 	protected double totalGastosDeposito = 0.0;
 	protected double totalGastosSaque = 0.0;
 	protected double totalGastosTransferencia = 0.0;
+	
+	protected double totalGastos = 0.0;
+	
 	protected double saldo;
-	protected ETipoConta TipoConta;
+	protected TipoContaEnum TipoConta;
 	protected Date dataCadastro;
 	private final double TAXA_SAQUE = 0.1;
 	private final double TAXA_DEPOSITO = 0.1;
@@ -26,7 +30,7 @@ public abstract class Conta {
 	
 	protected List<Movimentacao> movimentacoes;
 	
-	public Conta(String cpf, String senha, double saldoAbertura, ETipoConta tipoConta, ETipoAgencia idAgencia) {
+	public Conta(String cpf, String senha, double saldoAbertura, TipoContaEnum tipoConta, TipoAgenciaEnum idAgencia) {
 		this.cpf = cpf;
 		this.senha = senha;
 		this.IdAgencia = idAgencia;
@@ -37,7 +41,7 @@ public abstract class Conta {
 		
 		movimentacoes = new ArrayList<Movimentacao>();
 		
-		Movimentacao movimentacao = new Movimentacao(ETipoMovimentacao.SALDO_ABERTURA, new Date(), saldoAbertura);
+		Movimentacao movimentacao = new Movimentacao(TipoMovimentacaoEnum.SALDO_ABERTURA, new Date(), saldoAbertura);
 
         movimentacoes.add(movimentacao);
 	}
@@ -59,11 +63,11 @@ public abstract class Conta {
 	}
 
 
-	public ETipoConta getTipoConta() {
+	public TipoContaEnum getTipoConta() {
 		return TipoConta;
 	}
 
-	public ETipoAgencia getIdAgencia() {
+	public TipoAgenciaEnum getIdAgencia() {
 		return IdAgencia;
 	}
 
@@ -92,10 +96,11 @@ public abstract class Conta {
             throw new InputMismatchException("Saldo insuficiente, Saldo: R$" + this.saldo);            
         }
 
-        this.saldo -= (valor + TAXA_SAQUE);
+        this.saldo -= (valor + TAXA_SAQUE);           
         
-		totalGastosSaque = totalGastosSaque + TAXA_SAQUE;
-		Movimentacao movimentacao = new Movimentacao(ETipoMovimentacao.SAIDA, new Date(), valor);
+		totalGastosSaque = totalGastosSaque + TAXA_SAQUE;		
+		
+		Movimentacao movimentacao = new Movimentacao(TipoMovimentacaoEnum.SAIDA, new Date(), valor);
         movimentacoes.add(movimentacao);
 	}
 	public void depositar (double valor) {
@@ -104,7 +109,7 @@ public abstract class Conta {
 		}
 		this.saldo += (valor-TAXA_DEPOSITO);
 		totalGastosDeposito = totalGastosDeposito + TAXA_DEPOSITO;
-		Movimentacao movimentacao = new Movimentacao (ETipoMovimentacao.ENTRADA, new Date(), valor);
+		Movimentacao movimentacao = new Movimentacao (TipoMovimentacaoEnum.ENTRADA, new Date(), valor);
 		movimentacoes.add(movimentacao);
 	}
 	public void transferir (double valor, Conta contaDestino) {
@@ -112,8 +117,21 @@ public abstract class Conta {
 	    contaDestino.depositar(valor + TAXA);
 	    totalGastosTransferencia = totalGastosTransferencia + TAXA_TRANSFERENCIA;
 	}
+	public double obterTotalGasto() {
+		totalGastos += (totalGastosDeposito + totalGastosSaque + totalGastosTransferencia);
+		return totalGastos;
+	}
 	public double obterSaldo(){
         return this.saldo;
     }
 	 public abstract void imprimirExtrato();
+
+	@Override
+	public String toString() {
+		return "Conta [movimentacoes=" + movimentacoes + "]";
+	}
+
+	
+	 
+	 
 }

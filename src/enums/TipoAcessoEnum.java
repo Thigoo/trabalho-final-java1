@@ -1,6 +1,6 @@
-package pessoa;
+package enums;
 
-public enum ETipoAcesso {
+public enum TipoAcessoEnum {
 	GERENTE,
 	DIRETOR,
 	PRESIDENTE,

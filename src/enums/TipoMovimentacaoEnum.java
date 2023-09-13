@@ -1,6 +1,6 @@
-package conta;
+package enums;
 
-public enum ETipoMovimentacao {
+public enum TipoMovimentacaoEnum {
     SALDO_ABERTURA, //0
     ENTRADA, // 1
     SAIDA, // 2
