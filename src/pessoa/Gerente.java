@@ -3,9 +3,9 @@ package pessoa;
 import conta.Conta;
 import enums.TipoAcessoEnum;
 import enums.TipoAgenciaEnum;
-import menus.ArrayList;
-import menus.ETipoAgencia;
-import menus.List;
+//import menus.ArrayList;
+//import menus.ETipoAgencia;
+//import menus.List;
 
 public class Gerente extends Funcionario {	
 

@@ -10,10 +10,15 @@ public class Cliente extends Pessoa {
 		super();
 	}
 
-	public Cliente(String nome, String cpf, String senha, String email, String telefone, TipoAcessoEnum acesso,
+	
+
+	public Cliente(String nome, String cpf, String email, String telefone, TipoAcessoEnum acesso,
 			TipoAgenciaEnum idAgencia) {
-		super(nome, cpf, senha, email, telefone, acesso, idAgencia);
+		super(nome, cpf, email, telefone, acesso, idAgencia);
+		this.seguroVida = seguroVida;
 	}
+
+
 
 	private SeguroVida seguroVida = new SeguroVida();
 	

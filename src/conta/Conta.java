@@ -5,14 +5,14 @@ import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.List;
 
-import conta.Movimentacao;
 import enums.TipoAgenciaEnum;
 import enums.TipoContaEnum;
 import enums.TipoMovimentacaoEnum;
+import pessoa.Pessoa;
 
 public abstract class Conta {
-	protected String cpf;
 	protected String senha;
+	protected Pessoa cpf;
 	protected TipoAgenciaEnum IdAgencia;
 	protected double totalGastosDeposito = 0.0;
 	protected double totalGastosSaque = 0.0;
@@ -30,7 +30,7 @@ public abstract class Conta {
 
 	protected List<Movimentacao> movimentacoes;
 
-	public Conta(String cpf, String senha, double saldoAbertura, TipoContaEnum tipoConta, TipoAgenciaEnum idAgencia) {
+	public Conta(Pessoa cpf, String senha, double saldoAbertura, TipoContaEnum tipoConta, TipoAgenciaEnum idAgencia) {
 		this.cpf = cpf;
 		this.senha = senha;
 		this.IdAgencia = idAgencia;
@@ -46,11 +46,11 @@ public abstract class Conta {
 		movimentacoes.add(movimentacao);
 	}
 
-	public String getCpf() {
+	public Pessoa getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(String cpf) {
+	public void setCpf(Pessoa cpf) {
 		this.cpf = cpf;
 	}
 

@@ -17,6 +17,8 @@ public class Menus {
 	private double valorTransferencia = 0.0;
 	private Scanner leitor;
 	private Conta conta;
+	private ContaPoupanca cp;
+	private SeguroVida sg;
 	Double valorContratado = 0.0; // VALOR DO SEGURO CLIENTE
 
 	public Menus() {
@@ -135,21 +137,20 @@ public class Menus {
 								System.out.println("\n********************* SIMULAÇÃO ********************\n");
 								System.out.println("Quanto você deseja investir? ");
 								valorInvest = leitor.nextDouble();
-								System.out.println("Por quanto tempo? (EM DIAS)");
+								System.out.println("Por quanto tempo? (EM DIAS)");								
 								numDias = leitor.nextInt();
-								//Aguardando resolução no getCpf
-								ContaPoupanca.calcularRendimentoPoupanca(valorInvest, numDias);
+								cp.calcularRendimentoPoupanca(valorInvest, numDias);
 								break;
 								
-//							case 4: // Contratar seguro de vida
-//								// FALTA FAZER
-//								double valorSeguro;
-//								System.out.println("\n************* CONTRATAR SEGURO DE VIDA *************\n");
-//								System.out.println("Qual valor você deseja assegurar?");
-//								valorSeguro = leitor.nextDouble();
-//								//Verificar função statica 
-//								System.out.println(SeguroVida.toString());
-//								break;
+							case 4: // Contratar seguro de vida
+								// FALTA FAZER
+								double valorSeguro;
+								System.out.println("\n************* CONTRATAR SEGURO DE VIDA *************\n");
+								System.out.println("Qual valor você deseja assegurar?");
+								valorSeguro = leitor.nextDouble();
+								//Verificar função statica 
+								System.out.println(sg.toString());
+								break;
 						}
 					
 				case 3: // Sair
