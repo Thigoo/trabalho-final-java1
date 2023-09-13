@@ -1,7 +1,10 @@
 package menus;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
+import agencia.ETipoAgencia;
 import conta.Conta;
 import conta.SeguroVida;
 import pessoa.Pessoa;
@@ -157,15 +160,43 @@ public class Menus {
 		menuGeral();
 	}
 	
+	/*
+	 * public static List<Conta> totalContas(List<Conta> contas, ETipoAgencia tipoAgencia) {
+		List<Conta> listaContas = new ArrayList<Conta>();
+		for (int i = 0; i < contas.size(); i++) {
+			if (contas.get(i).getIdAgencia().getIdAgencia() == tipoAgencia.getIdAgencia()) {
+				listaContas.add(contas.get(i));
+			}
+		}
+		return listaContas;
+	 */
+	
 	public void imprimirMenuDiretor() {
 		System.out.print("******************* MENU   DIRETOR *******************");
 		menuGeral();
 	}
 	
+	/*
+	 * */
+	
 	public void imprimirMenuPresidente() {
 		System.out.print("******************* MENU PRESIDENTE *******************");
 		menuGeral();
 	}
+	
+	/*
+	 * public static void valorTotalArmazenadoNoBanco(List<Conta> listaContas) {// (List<Conta> = tipo de varial da lista,
+																				// nome da varial List = ListaContas
+		double valorTotalArmazenada = 0.0;
+		for (int i = 0; i < listaContas.size(); i++) {
+			valorTotalArmazenada = valorTotalArmazenada + listaContas.get(i).getSaldo();
+
+			System.out.println(
+					i + 1 + "- CPF: " + listaContas.get(i).getCpf() + "Saldo: " + listaContas.get(i).getSaldo());
+		}
+		System.out.println("Valor Total armazenado: "+ valorTotalArmazenada);
+	}
+	 * */
 	
 	public void movConta(Conta conta) {
 		
