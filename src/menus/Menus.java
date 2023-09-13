@@ -134,7 +134,7 @@ public class Menus {
 	public void movConta(Conta conta) {
 		
 		do {
-			System.out.println("\n************** MOVIMENTACOES NA CONTA ***************");
+			System.out.println("\n\n************** MOVIMENTACOES NA CONTA ***************");
 			System.out.println("\n[1] - Saque");
 			System.out.println("[2] - Deposito");
 			System.out.println("[3] - Transferência");
