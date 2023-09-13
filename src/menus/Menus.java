@@ -57,7 +57,18 @@ public class Menus {
 		if (this.cpf.equals(pessoa.getCpf()) && this.senha.equals(pessoa.getSenha())) {
 
 			System.out.println("\nLogin efetuado com sucesso!\n");
-			imprimirMenuCliente();
+			imprimirMenuGerente();
+			// tipos de acesso
+//				if (pessoa == cliente) {
+//					imprimirMenuCliente();
+//				} else  if (pessoa == gerente) {
+//					imprimirMenuGerente();
+//				} else if (pessoa == diretor) {
+//					imprimirMenuDiretor();
+//				} else {
+//					imprimirMenuPresidente();
+//				}
+			
 
 		} else {
 
@@ -65,7 +76,7 @@ public class Menus {
 		}
 	}
 
-	public void imprimirMenuCliente() {
+	public void menuGeral() {
 
 		System.out.println("************************ MENU **********************\n");
 		System.out.println("[1] - Movimentações na conta");
@@ -131,10 +142,30 @@ public class Menus {
 
 	}
 
+	public void imprimirMenuCliente() {
+		System.out.print("******************* MENU   GERENTE *******************");
+		menuGeral();
+	}
+	
+	public void imprimirMenuGerente() {
+		System.out.print("******************* MENU   GERENTE *******************");
+		menuGeral();
+	}
+	
+	public void imprimirMenuDiretor() {
+		System.out.print("******************* MENU   DIRETOR *******************");
+		menuGeral();
+	}
+	
+	public void imprimirMenuPresidente() {
+		System.out.print("******************* MENU PRESIDENTE *******************");
+		menuGeral();
+	}
+	
 	public void movConta(Conta conta) {
 		
 		do {
-			System.out.println("\n\n************** MOVIMENTACOES NA CONTA ***************");
+			System.out.println("************** MOVIMENTACOES NA CONTA ***************");
 			System.out.println("\n[1] - Saque");
 			System.out.println("[2] - Deposito");
 			System.out.println("[3] - Transferência");

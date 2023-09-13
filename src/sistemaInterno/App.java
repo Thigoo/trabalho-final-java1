@@ -61,6 +61,8 @@ public class App {
 		System.out.println("Escrevi o arquivo aqui!");
 
 		leitor.close();
+		
+		
 	}
 
 }
