@@ -3,8 +3,6 @@ package menus;
 import java.util.Scanner;
 
 import conta.Conta;
-import conta.ContaCorrente;
-import enums.TipoContaEnum;
 import pessoa.Pessoa;
 
 public class Menus {
@@ -12,7 +10,9 @@ public class Menus {
 	private int opcao;
 	private String cpf;
 	private String senha;
-	private double valorSaque, valorDeposito, valorTransferencia;
+	private double valorSaque;
+	private double valorDeposito;
+	private double valorTransferencia = 0.0;
 	private Scanner leitor;
 	private Conta conta;
 
@@ -133,10 +133,9 @@ public class Menus {
 
 	public void movConta(Conta conta) {
 		
-		System.out.println("\n************** MOVIMENTACOES NA CONTA ***************");
-		
 		do {
-			System.out.println("[1] - Saque");
+			System.out.println("\n************** MOVIMENTACOES NA CONTA ***************");
+			System.out.println("\n[1] - Saque");
 			System.out.println("[2] - Deposito");
 			System.out.println("[3] - Transferência");
 			System.out.println("[4] - Sair");
