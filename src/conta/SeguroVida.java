@@ -19,12 +19,30 @@ public class SeguroVida {
 		return isActive;
 	}
 
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+
 	public Double getValorContratado() {
 		return valorContratado;
+	}
+
+	public static void void setValorContratado(Double valorContratado) {
+		this.valorContratado = valorContratado;
 	}
 
 	public Double getTributoSeguro() {
 		return tributoSeguro;
 	}
 
+	public void setTributoSeguro(Double tributoSeguro) {
+		this.tributoSeguro = tributoSeguro;
+	}
+
+	@Override
+	public String toString() {
+		return "SeguroVida [isActive = " + isActive + ", valorContratado = " + valorContratado + ", tributoSeguro = "
+				+ tributoSeguro + "]";
+	}
+	
 }

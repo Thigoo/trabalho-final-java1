@@ -3,6 +3,7 @@ package menus;
 import java.util.Scanner;
 
 import conta.Conta;
+import conta.SeguroVida;
 import pessoa.Pessoa;
 
 public class Menus {
@@ -15,6 +16,7 @@ public class Menus {
 	private double valorTransferencia = 0.0;
 	private Scanner leitor;
 	private Conta conta;
+	Double valorContratado = 0.0; // VALOR DO SEGURO CLIENTE
 
 	public Menus() {
 		super();
@@ -143,8 +145,11 @@ public class Menus {
 	}
 
 	public void imprimirMenuCliente() {
-		System.out.print("******************* MENU   GERENTE *******************");
+		System.out.print("******************* MENU   CLIENTE *******************");
 		menuGeral();
+		SeguroVida.setValorContratado(valorContratado);
+		System.out.print("********************** GERENTE ***********************");
+		//SeguroVida.toString(); MOSTRAR RELATORIO DO SEGURO
 	}
 	
 	public void imprimirMenuGerente() {
@@ -165,7 +170,7 @@ public class Menus {
 	public void movConta(Conta conta) {
 		
 		do {
-			System.out.println("************** MOVIMENTACOES NA CONTA ***************");
+			System.out.println("\n************** MOVIMENTACOES NA CONTA ***************");
 			System.out.println("\n[1] - Saque");
 			System.out.println("[2] - Deposito");
 			System.out.println("[3] - Transferência");
