@@ -89,6 +89,18 @@ public abstract class Conta {
 	public double getTotalGastosTransferencia() {
 		return totalGastosTransferencia;
 	}
+	
+	public double getTAXA_SAQUE() {
+		return TAXA_SAQUE;
+	}
+
+	public double getTAXA_DEPOSITO() {
+		return TAXA_DEPOSITO;
+	}
+
+	public double getTAXA_TRANSFERENCIA() {
+		return TAXA_TRANSFERENCIA;
+	}
 
 	public void sacar(double valor) {
 		if ((valor + TAXA_SAQUE) > this.saldo) {
@@ -97,7 +109,7 @@ public abstract class Conta {
 
 		this.saldo -= (valor + TAXA_SAQUE);
 
-		totalGastosSaque = totalGastosSaque + TAXA_SAQUE;
+		totalGastosSaque += (totalGastosSaque + TAXA_SAQUE);
 
 		Movimentacao movimentacao = new Movimentacao(TipoMovimentacaoEnum.SAIDA, new Date(), valor);
 		movimentacoes.add(movimentacao);
@@ -109,7 +121,7 @@ public abstract class Conta {
 					"O valor mínimo para realizar o deposito tem que ser maior que o valor da taxa R$ 0.10.");
 		}
 		this.saldo += (valor - TAXA_DEPOSITO);
-		totalGastosDeposito = totalGastosDeposito + TAXA_DEPOSITO;
+		totalGastosDeposito += (totalGastosDeposito + TAXA_DEPOSITO);
 		Movimentacao movimentacao = new Movimentacao(TipoMovimentacaoEnum.ENTRADA, new Date(), valor);
 		movimentacoes.add(movimentacao);
 	}
@@ -117,11 +129,11 @@ public abstract class Conta {
 	public void transferir(double valor, Conta contaDestino) {
 		sacar(valor + TAXA);// PQ no metodo sacar já possui uma debitação de 0.1.
 		contaDestino.depositar(valor + TAXA);
-		totalGastosTransferencia = totalGastosTransferencia + TAXA_TRANSFERENCIA;
+		totalGastosTransferencia += (totalGastosTransferencia + TAXA_TRANSFERENCIA);
 	}
 
-	public double obterTotalGasto() {
-		totalGastos += (totalGastosDeposito + totalGastosSaque + totalGastosTransferencia);
+	public double obterTotalGasto() {									
+		totalGastos = (totalGastosDeposito + totalGastosSaque + totalGastosTransferencia);
 		return totalGastos;
 	}
 

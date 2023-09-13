@@ -1,11 +1,9 @@
 package menus;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-import agencia.ETipoAgencia;
 import conta.Conta;
+import conta.ContaPoupanca;
 import conta.SeguroVida;
 import pessoa.Pessoa;
 
@@ -51,34 +49,40 @@ public class Menus {
 		System.out.println("                      ▐▄▒▒▒▒▒▒▒▒▐                   ");
 		System.out.println("                      ▌▒▒▒▒▄▄▒▒▒▐                   ");
 		System.out.println("****************************************************\n");
+		
+		do {
+			System.out.println("******************* ACESSO À CONTA *****************\n");
+			System.out.print("Por favor, digite seu cpf: ");
+			this.cpf = this.leitor.nextLine();
 
-		System.out.println("******************* ACESSO À CONTA *****************\n");
-		System.out.print("Por favor, digite seu cpf: ");
-		this.cpf = this.leitor.nextLine();
+			System.out.print("Digite sua senha: ");
+			this.senha = this.leitor.nextLine();
 
-		System.out.print("Digite sua senha: ");
-		this.senha = this.leitor.nextLine();
+			if (this.cpf.equals(pessoa.getCpf()) && this.senha.equals(pessoa.getSenha())) {
 
-		if (this.cpf.equals(pessoa.getCpf()) && this.senha.equals(pessoa.getSenha())) {
+				System.out.println("\nLogin efetuado com sucesso!\n");
+				imprimirMenuCliente();
+				
+				// tipos de acesso
+//					if (pessoa == cliente) {
+//						imprimirMenuCliente();
+//					} else  if (pessoa == gerente) {
+//						imprimirMenuGerente();
+//					} else if (pessoa == diretor) {
+//						imprimirMenuDiretor();
+//					} else {
+//						imprimirMenuPresidente();
+//					}
+				
 
-			System.out.println("\nLogin efetuado com sucesso!\n");
-			imprimirMenuGerente();
-			// tipos de acesso
-//				if (pessoa == cliente) {
-//					imprimirMenuCliente();
-//				} else  if (pessoa == gerente) {
-//					imprimirMenuGerente();
-//				} else if (pessoa == diretor) {
-//					imprimirMenuDiretor();
-//				} else {
-//					imprimirMenuPresidente();
-//				}
+			} else {
+
+				System.out.println("Acesso negado!\n");
+			}
 			
-
-		} else {
-
-			System.out.println("Acesso negado!\n");
-		}
+			
+		} while(!this.cpf.equals(pessoa.getCpf()) || !this.senha.equals(pessoa.getSenha()));		
+		
 	}
 
 	public void menuGeral() {
@@ -118,19 +122,34 @@ public class Menus {
 							case 2: // Relatório de tributação da conta corrente
 								System.out.println("\n*********** TRIBUTAÇÃO DA CONTA CORRENTE ***********\n");
 								System.out.println("Total gastos: " + conta.obterTotalGasto());
+								System.out.println("Taxa de saque: R$" + conta.getTAXA_SAQUE());
+								System.out.println("Taxa de depósito: R$" + conta.getTAXA_DEPOSITO());
+								System.out.println("Taxa de transferência: R$" + conta.getTAXA_TRANSFERENCIA());
 								break;
 			
 							case 3: // Relatório de rendimento da poupança
 								// FALTA FAZER
+								double valorInvest;
+								int numDias;
 								System.out.println("\n*********** RENDIMENTO DA CONTA POUPANÇA ***********\n");
-								System.out.println("Rendimento poupança");
+								System.out.println("\n********************* SIMULAÇÃO ********************\n");
+								System.out.println("Quanto você deseja investir? ");
+								valorInvest = leitor.nextDouble();
+								System.out.println("Por quanto tempo? (EM DIAS)");
+								numDias = leitor.nextInt();
+								//Aguardando resolução no getCpf
+								ContaPoupanca.calcularRendimentoPoupanca(valorInvest, numDias);
 								break;
 								
-							case 4: // Contratar seguro de vida
-								// FALTA FAZER
-								System.out.println("\n************* CONTRATAR SEGURO DE VIDA *************\n");
-								System.out.println("Seguro de vida");
-								break;
+//							case 4: // Contratar seguro de vida
+//								// FALTA FAZER
+//								double valorSeguro;
+//								System.out.println("\n************* CONTRATAR SEGURO DE VIDA *************\n");
+//								System.out.println("Qual valor você deseja assegurar?");
+//								valorSeguro = leitor.nextDouble();
+//								//Verificar função statica 
+//								System.out.println(SeguroVida.toString());
+//								break;
 						}
 					
 				case 3: // Sair
@@ -150,26 +169,37 @@ public class Menus {
 	public void imprimirMenuCliente() {
 		System.out.print("******************* MENU   CLIENTE *******************");
 		menuGeral();
-		SeguroVida.setValorContratado(valorContratado);
-		System.out.print("********************** GERENTE ***********************");
-		//SeguroVida.toString(); MOSTRAR RELATORIO DO SEGURO
+		// Contratar seguro de vida
+		// FALTA FAZER
+		double valorSeguro;
+		System.out.println("\n************* CONTRATAR SEGURO DE VIDA *************\n");
+		System.out.println("Conheça nosso seguro de vida");
+		System.out.println("Gostaria de contratar nosso seguro?");
+		System.out.println("[1] - Sim \n[2] - Não");
+		opcao = leitor.nextInt();
+		if(opcao == 1) {
+			System.out.println("Qual valor você deseja assegurar?");
+			valorSeguro = leitor.nextDouble();
+			//Verificar função statica 
+			//System.out.println(SeguroVida.contratarSeguroDeVida(valorSeguro));
+		} else {
+			
+			System.out.println("Obrigdo por utilizar nosso sistema!");		
+			
+		}
+		
+		
 	}
 	
 	public void imprimirMenuGerente() {
 		System.out.print("******************* MENU   GERENTE *******************");
 		menuGeral();
+		
+		//aguardando arraylist e arquivo
+		 
 	}
 	
-	/*
-	 * public static List<Conta> totalContas(List<Conta> contas, ETipoAgencia tipoAgencia) {
-		List<Conta> listaContas = new ArrayList<Conta>();
-		for (int i = 0; i < contas.size(); i++) {
-			if (contas.get(i).getIdAgencia().getIdAgencia() == tipoAgencia.getIdAgencia()) {
-				listaContas.add(contas.get(i));
-			}
-		}
-		return listaContas;
-	 */
+	
 	
 	public void imprimirMenuDiretor() {
 		System.out.print("******************* MENU   DIRETOR *******************");

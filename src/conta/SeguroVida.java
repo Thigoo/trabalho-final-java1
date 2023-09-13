@@ -27,7 +27,7 @@ public class SeguroVida {
 		return valorContratado;
 	}
 
-	public static void void setValorContratado(Double valorContratado) {
+	public void setValorContratado(Double valorContratado) {
 		this.valorContratado = valorContratado;
 	}
 

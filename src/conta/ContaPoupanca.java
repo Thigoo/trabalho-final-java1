@@ -12,11 +12,12 @@ public class ContaPoupanca extends Conta {
 		super(cpf, senha, saldoAbertura, tipoConta, idAgencia);
 	}
 
-	public void calcularRendimentoPoupanca(Double valorDinheiro, Integer numDias) {
+	
+	public static void calcularRendimentoPoupanca(Double valorDinheiro, Integer numDias) {
 		Double valorInicial = Double.valueOf(valorDinheiro);
 		double taxaJurosDia = 0.00034;
 		for (int i=0; i<numDias; i++) {
-			valorDinheiro = valorDinheiro * (1 + taxaJurosDia);
+			valorDinheiro *= (1 + taxaJurosDia);
 		}
 		System.out.println("*********************************************");
 		System.out.println();
@@ -24,7 +25,8 @@ public class ContaPoupanca extends Conta {
 		System.out.println();
 		System.out.println("*********************************************");
 		System.out.println("Data e hora: "+ ConverteData.converteDataParaDataHora(new Date()));
-		System.out.println("CPF do Titular "+ this.getCpf());
+		//***************** Verificar como pegar o CPF
+		//System.out.println("CPF do Titular " + conta.);
 		System.out.println();
 		System.out.println("Quantidade de dias que o dinheiro sera investido "+numDias);
 		System.out.println("Taxa de juros por dia "+taxaJurosDia);
