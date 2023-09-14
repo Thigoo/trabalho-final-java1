@@ -9,11 +9,13 @@ import pessoa.Pessoa;
 
 public class ContaPoupanca extends Conta {
 
-	public ContaPoupanca(TipoContaEnum tipoConta, Pessoa cpf, String numero, double saldoAbertura,  TipoAgenciaEnum idAgencia) {
+	
+
+	
+	public ContaPoupanca(TipoContaEnum tipoConta, String cpf, String numero, double saldoAbertura, String idAgencia) {
 		super(tipoConta, cpf, numero, saldoAbertura, idAgencia);
 	}
 
-	
 	public void calcularRendimentoPoupanca(double valorDinheiro, int numDias) {
 		Double valorInicial = Double.valueOf(valorDinheiro);
 		double taxaJurosDia = 0.00034;
@@ -58,6 +60,7 @@ public class ContaPoupanca extends Conta {
 
 	}
 	
+
 	
 
 }

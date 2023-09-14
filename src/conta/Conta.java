@@ -30,7 +30,7 @@ public abstract class Conta {
 
 	protected List<Movimentacao> movimentacoes;
 
-	public Conta(TipoContaEnum tipoConta,String cpf, String numero, double saldoAbertura, TipoAgenciaEnum idAgencia) {
+	public Conta(TipoContaEnum tipoConta,String cpf, String numero, double saldoAbertura, String idAgencia) {
 		this.cpf = cpf;
 		this.numero = numero;
 		this.IdAgencia = idAgencia;
@@ -151,7 +151,7 @@ public abstract class Conta {
 		IdAgencia = dados;
 	}
 
-	public void setSaldo(String dados) {
+	public void setSaldo(Double dados) {
 		this.saldo = dados;
 	}
 

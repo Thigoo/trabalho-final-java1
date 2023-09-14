@@ -1,8 +1,11 @@
 package io;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -90,7 +93,7 @@ public class InputOutput {
 						Conta[] cc = new ContaCorrente[100];
 						cc[i].setCpf(dados[1]);
 						cc[i].setNumero(dados[2]);
-						cc[i].setSaldo(dados[3]);
+						cc[i].setSaldo(Double.parseDouble(dados[3]));
 						cc[i].setIdAgencia(dados[4]);
 						contascorrente.put(dados[i], cc[i]);
 
@@ -99,7 +102,7 @@ public class InputOutput {
 						Conta[] cp = new ContaPoupanca[100];
 						cp[i].setCpf(dados[1]);
 						cp[i].setNumero(dados[2]);
-						cp[i].setSaldo(dados[3]);
+						cp[i].setSaldo(Double.parseDouble(dados[3]));
 						cp[i].setIdAgencia(dados[4]);
 						contaspoupanca.put(dados[i], cp[i]);
 					}
@@ -108,5 +111,23 @@ public class InputOutput {
 		}
 		return this.arquivo;
 	}
+	
+	
 
+	public static void escritor() {
+		try {
+          BufferedWriter out = new BufferedWriter( new FileWriter("movimentacaoSaque.txt"));
+          
+          out.append("\n************************* SAQUE ************************\n");
+		  out.append("VALOR DO SAQUE: R$");
+//		  				valorSaque = leitor.nextDouble();
+//		  				conta.sacar(valorSaque);
+//		  out.append("Saldo efetuado com sucesso! \nSeu saldo é: R$" + conta.getSaldo());
+          
+          out.append("abcsss");
+          out.close();
+          }catch (IOException e) {
+              System.out.println("Erro ao acessar o arquivo");
+      }
+	}
 }

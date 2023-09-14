@@ -5,6 +5,7 @@ import java.util.Scanner;
 import conta.Conta;
 import conta.ContaPoupanca;
 import conta.SeguroVida;
+import io.InputOutput;
 import pessoa.Pessoa;
 
 public class Menus {
@@ -248,6 +249,7 @@ public class Menus {
 				valorSaque = leitor.nextDouble();
 				conta.sacar(valorSaque);
 				System.out.print("Saldo efetuado com sucesso! \nSeu saldo é: R$" + conta.getSaldo());
+				InputOutput.escritor();
 				break;
 
 			case 2:
