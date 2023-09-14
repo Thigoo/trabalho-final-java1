@@ -17,14 +17,15 @@ public abstract class Pessoa {
 	protected String telefone;
 	protected Date dataCadastro;
 	protected TipoAcessoEnum Acesso;
-	protected TipoAgenciaEnum IdAgencia;
+	public String IdAgencia;
 	
 	public Pessoa() {
 	}
-
-	public Pessoa(String nome, String cpf, String email, String telefone, TipoAcessoEnum acesso, TipoAgenciaEnum idAgencia) {
+	
+	public Pessoa(TipoAcessoEnum acesso, String cpf, String senha, String nome,  String email, String telefone, String idAgencia) {
 		this.nome = nome;
 		this.cpf = cpf;
+		this.senha = senha;
 		this.email = email;
 		this.telefone = telefone;
 		this.dataCadastro = new Date();
@@ -36,15 +37,25 @@ public abstract class Pessoa {
 	public TipoAcessoEnum getAcesso() {
 		return Acesso;
 	}
+	
+	
+	
 
-
-	public TipoAgenciaEnum getIdAgencia() {
-		return IdAgencia;
-	}
-
+//	public void setIdAgencia(String dados) {
+//		IdAgencia = dados;
+//	}
+//
+//	public TipoAgenciaEnum getIdAgencia() {
+//		return IdAgencia;
+//	}
+	
 
 	public String getNome() {
 		return nome;
+	}
+
+	public void setIdAgencia(String idAgencia) {
+		IdAgencia = idAgencia;
 	}
 
 	public void setNome(String nome) {
@@ -59,6 +70,12 @@ public abstract class Pessoa {
 		this.cpf = cpf;
 	}
 	
+	
+	
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
 	public String getSenha() {
 		return senha;
 	}

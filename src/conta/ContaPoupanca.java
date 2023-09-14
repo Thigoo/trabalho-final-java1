@@ -9,8 +9,8 @@ import pessoa.Pessoa;
 
 public class ContaPoupanca extends Conta {
 
-	public ContaPoupanca(Pessoa cpf, String senha, double saldoAbertura, TipoContaEnum tipoConta, TipoAgenciaEnum idAgencia) {
-		super(cpf, senha, saldoAbertura, tipoConta, idAgencia);
+	public ContaPoupanca(TipoContaEnum tipoConta, Pessoa cpf, String numero, double saldoAbertura,  TipoAgenciaEnum idAgencia) {
+		super(tipoConta, cpf, numero, saldoAbertura, idAgencia);
 	}
 
 	

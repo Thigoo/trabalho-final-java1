@@ -4,9 +4,17 @@ import enums.TipoAcessoEnum;
 import enums.TipoAgenciaEnum;
 
 public class Presidente extends Funcionario {
-
-	public Presidente(String nome, String cpf, String email, String telefone, TipoAcessoEnum acesso,
-			TipoAgenciaEnum idAgencia) {
-		super(nome, cpf, email, telefone, acesso, idAgencia);
+	
+	public Presidente() {
+		
 	}
+
+	public Presidente(TipoAcessoEnum acesso,String cpf,  String senha, String nome, String email, String telefone,
+			String idAgencia) {
+		super(acesso, cpf, senha, nome, email, telefone, idAgencia);
+	}
+
+	
+
+	
 }

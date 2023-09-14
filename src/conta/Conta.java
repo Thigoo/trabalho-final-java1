@@ -11,7 +11,7 @@ import enums.TipoMovimentacaoEnum;
 import pessoa.Pessoa;
 
 public abstract class Conta {
-	protected String senha;
+	protected String numero;
 	protected Pessoa cpf;
 	protected TipoAgenciaEnum IdAgencia;
 	protected double totalGastosDeposito = 0.0;
@@ -30,9 +30,9 @@ public abstract class Conta {
 
 	protected List<Movimentacao> movimentacoes;
 
-	public Conta(Pessoa cpf, String senha, double saldoAbertura, TipoContaEnum tipoConta, TipoAgenciaEnum idAgencia) {
+	public Conta(TipoContaEnum tipoConta,Pessoa cpf, String numero, double saldoAbertura, TipoAgenciaEnum idAgencia) {
 		this.cpf = cpf;
-		this.senha = senha;
+		this.numero = numero;
 		this.IdAgencia = idAgencia;
 		this.saldo = saldoAbertura;
 		this.dataCadastro = new Date();
@@ -55,11 +55,11 @@ public abstract class Conta {
 	}
 
 	public String getSenha() {
-		return senha;
+		return numero;
 	}
 
 	public void setSenha(String senha) {
-		this.senha = senha;
+		this.numero = senha;
 	}
 
 	public TipoContaEnum getTipoConta() {

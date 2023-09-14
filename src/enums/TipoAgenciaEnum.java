@@ -16,4 +16,6 @@ public enum TipoAgenciaEnum {
 	public int getIdAgencia() {
 		return idAgencia;
 	}
+	
+	
 }

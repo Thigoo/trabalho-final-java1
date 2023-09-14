@@ -4,11 +4,12 @@ import enums.TipoAcessoEnum;
 import enums.TipoAgenciaEnum;
 
 public abstract class Funcionario extends Pessoa {
-
+	public Funcionario() {
+		
+	}
 	
-	
-	public Funcionario(String nome, String cpf, String email, String telefone, TipoAcessoEnum acesso,
-			TipoAgenciaEnum idAgencia) {
-		super(nome, cpf, email, telefone, acesso, idAgencia);
+	public Funcionario(TipoAcessoEnum acesso,String cpf, String senha, String nome, String email, String telefone,
+			String idAgencia) {
+		super(acesso, cpf, senha, nome, email, telefone, idAgencia);
 	}
 }

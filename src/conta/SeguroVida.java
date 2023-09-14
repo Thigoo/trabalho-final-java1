@@ -9,10 +9,11 @@ public class SeguroVida {
 	public SeguroVida() {
 	}
 
-	public void contratarSeguroDeVida(Double valorSegurado) {
+	public boolean contratarSeguroDeVida(Double valorSegurado) {
 		this.valorContratado = valorSegurado * 0.8;
 		this.tributoSeguro = valorSegurado * 0.2;
 		this.isActive = true;
+		return this.isActive;
 	}
 
 	public boolean isActive() {

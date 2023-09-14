@@ -1,18 +1,25 @@
 package pessoa;
 
-import conta.Conta;
 import enums.TipoAcessoEnum;
-import enums.TipoAgenciaEnum;
-//import menus.ArrayList;
-//import menus.ETipoAgencia;
-//import menus.List;
 
-public class Gerente extends Funcionario {	
-
-	public Gerente(String nome, String cpf, String email, String telefone, TipoAcessoEnum acesso,
-			TipoAgenciaEnum idAgencia) {
-		super(nome, cpf, email, telefone, acesso, idAgencia);
+public class Gerente extends Funcionario {
+	
+	public Gerente() {
+		
 	}
+
+	public Gerente(TipoAcessoEnum acesso, String cpf, String senha, String nome, String email, String telefone,
+			String idAgencia) {
+		super(acesso, cpf, senha, nome, email, telefone, idAgencia);
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+
+		
+
+	
 // PESQUISAR ARRAYLIST E ARQUIVO	
 //	public static List<Conta> totalContas(List<Conta> contas, ETipoAgencia tipoAgencia) {
 //		List<Conta> listaContas = new ArrayList<Conta>();
