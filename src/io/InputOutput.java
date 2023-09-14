@@ -30,7 +30,7 @@ public class InputOutput {
 		this.leitor = new Scanner(arquivo, "UTF-8");
 		Map<String, Pessoa> clientes = new HashMap<>();
 		Map<String, Conta> contascorrente = new HashMap<>();
-		Map<String, Conta> contaspessoa = new HashMap<>();
+		Map<String, Conta> contaspoupanca = new HashMap<>();
 		Map<String, Pessoa> gerentes = new HashMap<>();
 		Map<String, Pessoa> presidentes = new HashMap<>();
 		Map<String, Pessoa> diretores = new HashMap<>();
@@ -92,6 +92,7 @@ public class InputOutput {
 						cc[i].setNumero(dados[2]);
 						cc[i].setSaldo(dados[3]);
 						cc[i].setIdAgencia(dados[4]);
+						contascorrente.put(dados[i], cc[i]);
 
 					} else if (dados[0].equals(TipoContaEnum.CONTA_POUPANCA)) {
 						
@@ -100,7 +101,7 @@ public class InputOutput {
 						cp[i].setNumero(dados[2]);
 						cp[i].setSaldo(dados[3]);
 						cp[i].setIdAgencia(dados[4]);
-						
+						contaspoupanca.put(dados[i], cp[i]);
 					}
 				}
 			}
