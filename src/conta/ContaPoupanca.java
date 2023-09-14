@@ -5,10 +5,11 @@ import java.util.Date;
 import ConversorData.ConverteData;
 import enums.TipoAgenciaEnum;
 import enums.TipoContaEnum;
+import pessoa.Pessoa;
 
 public class ContaPoupanca extends Conta {
 
-	public ContaPoupanca(String cpf, String senha, double saldoAbertura, TipoContaEnum tipoConta, TipoAgenciaEnum idAgencia) {
+	public ContaPoupanca(Pessoa cpf, String senha, double saldoAbertura, TipoContaEnum tipoConta, TipoAgenciaEnum idAgencia) {
 		super(cpf, senha, saldoAbertura, tipoConta, idAgencia);
 	}
 

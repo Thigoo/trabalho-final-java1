@@ -5,8 +5,8 @@ import enums.TipoAgenciaEnum;
 
 public class Diretor extends Funcionario {
 
-	public Diretor(String nome, String cpf, String senha, String email, String telefone, TipoAcessoEnum acesso,
+	public Diretor(String nome, String cpf, String email, String telefone, TipoAcessoEnum acesso,
 			TipoAgenciaEnum idAgencia) {
-		super(nome, cpf, senha, email, telefone, acesso, idAgencia);
+		super(nome, cpf, email, telefone, acesso, idAgencia);
 	}
 }

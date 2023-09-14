@@ -9,9 +9,9 @@ import enums.TipoAgenciaEnum;
 
 public class Gerente extends Funcionario {	
 
-	public Gerente(String nome, String cpf, String senha, String email, String telefone, TipoAcessoEnum acesso,
+	public Gerente(String nome, String cpf, String email, String telefone, TipoAcessoEnum acesso,
 			TipoAgenciaEnum idAgencia) {
-		super(nome, cpf, senha, email, telefone, acesso, idAgencia);
+		super(nome, cpf, email, telefone, acesso, idAgencia);
 	}
 // PESQUISAR ARRAYLIST E ARQUIVO	
 //	public static List<Conta> totalContas(List<Conta> contas, ETipoAgencia tipoAgencia) {

@@ -9,6 +9,9 @@ import enums.TipoContaEnum;
 public abstract class Pessoa {
 	
 	protected String nome;
+	
+
+	protected String senha;
 	protected String cpf;
 	protected String email;
 	protected String telefone;
@@ -54,6 +57,10 @@ public abstract class Pessoa {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+	
+	public String getSenha() {
+		return senha;
 	}
 
 	public String getEmail() {

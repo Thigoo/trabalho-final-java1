@@ -5,10 +5,11 @@ import java.util.Date;
 import ConversorData.ConverteData;
 import enums.TipoAgenciaEnum;
 import enums.TipoContaEnum;
+import pessoa.Pessoa;
 
 public class ContaCorrente extends Conta {
 	
-	public ContaCorrente(String cpf, String senha, double saldoAbertura, TipoContaEnum tipoConta, TipoAgenciaEnum idAgencia) {
+	public ContaCorrente(Pessoa cpf, String senha, double saldoAbertura, TipoContaEnum tipoConta, TipoAgenciaEnum idAgencia) {
 		super(cpf, senha, saldoAbertura, tipoConta, idAgencia);
 		// TODO Auto-generated constructor stub
 	}
