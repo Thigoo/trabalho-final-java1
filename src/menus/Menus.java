@@ -1,14 +1,20 @@
 package menus;
 
-import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 import conta.Conta;
+import conta.ContaCorrente;
 import conta.ContaPoupanca;
 import conta.SeguroVida;
 import enums.TipoAcessoEnum;
 import io.InputOutput;
+import pessoa.Cliente;
+import pessoa.Diretor;
+import pessoa.Gerente;
 import pessoa.Pessoa;
+import pessoa.Presidente;
 
 public class Menus {
 
@@ -25,18 +31,21 @@ public class Menus {
 	private SeguroVida sg;
 	private InputOutput io;
 	private Pessoa pessoa;
+	Map<String, String> pessoas;
 	Double valorContratado = 0.0;
 
 	// CONSTRUTOR
 	public Menus() {
 		super();
+		this.pessoas = new HashMap<String, String>();
 	}
 
-//	public Menus(Conta conta, Scanner leitor) {
-//		super();
-//		this.conta = conta;
-//		this.leitor = leitor;
-//	}
+	public Menus(Conta conta, Scanner leitor) {
+		super();
+		this.conta = conta;
+		this.leitor = leitor;
+		this.pessoas = new HashMap<String, String>();
+	}
 
 	// MENU LOGAR - APARECE PARA TODAS AS PESSOAS CADASTRADAS
 	public void logar() {
@@ -59,37 +68,56 @@ public class Menus {
 		System.out.println("                      ▐▄▒▒▒▒▒▒▒▒▐                   ");
 		System.out.println("                      ▌▒▒▒▒▄▄▒▒▒▐                   ");
 		System.out.println("****************************************************\n");
-		
-		
-		
+
 		do {
 			System.out.println("******************* ACESSO À CONTA *****************\n");
+
 			System.out.print("Por favor, digite seu cpf: ");
+			leitor = new Scanner(System.in);
 			this.cpf = leitor.next();
 
 			System.out.print("Digite sua senha: ");
-			this.senha = leitor.next();
+			this.senha = leitor.next();		
+
+			for (Cliente cliente : io.getClientes()) {
+				pessoas.put(cliente.getCpf(), cliente.getSenha());				
+			}
+			for (Gerente gerente : io.getGerentes()) {
+				pessoas.put(gerente.getCpf(), gerente.getSenha());
+			}
+			for (Diretor diretor : io.getDiretores()) {
+				pessoas.put(diretor.getCpf(), diretor.getSenha());
+			}
+			for (Presidente presidente : io.getPresidentes()) {
+				pessoas.put(presidente.getCpf(), presidente.getSenha());
+			}
+			for (ContaCorrente cc : io.getContasCorrente()) {
+				pessoas.put(cc.getCpf(), cc.getIdAgencia());
+			}
+			for (ContaPoupanca cp : io.getContasPoupanca()) {
+				pessoas.put(cp.getCpf(), cp.getIdAgencia());
+			}
 
 			// CONFERE SE O CPF E SENHA ESTÃO CERTOS
-			if (this.cpf.equals(pessoa.getCpf()) && this.senha.equals(pessoa.getSenha())) {
-				
+			
+			if (this.cpf.equals(pessoas.get(cpf)) && this.senha.equals(pessoas.get(senha))) {
+
 				System.out.println("\nLogin efetuado com sucesso!\n");
-				imprimirMenuCliente();
 
 // FALTA PROCURAR SE A PESSOA EXISTE NO NOSSO ARQUIVO E FAZER O IF COM O TIPO DE ACESSO DELA
-					try {
-						if (io.leitor().equals(TipoAcessoEnum.CLIENTE)) {
-							imprimirMenuCliente();
-						} else  if (io.leitor().equals(TipoAcessoEnum.GERENTE)) {
-							imprimirMenuGerente();
-						} else if (io.leitor().equals(TipoAcessoEnum.DIRETOR)) {
-							imprimirMenuDiretor();
-						} else if (io.leitor().equals(TipoAcessoEnum.PRESIDENTE)) {
-							imprimirMenuPresidente();
-						}
-					} catch (Exception e) {
-						System.out.println("Erro logar pessoa!" + e.getMessage());
+				try {
+					if (io.leitor().equals(TipoAcessoEnum.CLIENTE)) {
+						imprimirMenuCliente();
+					} else if (io.leitor().equals(TipoAcessoEnum.GERENTE)) {
+						imprimirMenuGerente();
+					} else if (io.leitor().equals(TipoAcessoEnum.DIRETOR)) {
+						imprimirMenuDiretor();
+					} else if (io.leitor().equals(TipoAcessoEnum.PRESIDENTE)) {
+						imprimirMenuPresidente();
 					}
+				} catch (Exception e) {
+					System.out.println("Erro logar pessoa!" + e.getMessage());
+				}
 			} else {
 				System.out.println("Acesso negado!\n");
 			}
@@ -169,7 +197,7 @@ public class Menus {
 				// CONSERTAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				break;
 			}
-			
+
 		} while (this.opcao != 3); // 3 PARA SAIR
 	}
 
@@ -183,10 +211,10 @@ public class Menus {
 		System.out.println("\n************* CONTRATAR SEGURO DE VIDA *************\n");
 		System.out.println("Conheça nosso seguro de vida");
 		System.out.println("Gostaria de contratar nosso seguro?");
-		
+
 		System.out.println("[1] - Sim \n[2] - Não");
 		opcao = leitor.nextInt();
-		
+
 		// SE O CLIENTE DESEJAR EFETUAR O SEGURO DE VIDA
 		if (opcao == 1) {
 			System.out.println("Qual valor você deseja assegurar?");
@@ -204,7 +232,7 @@ public class Menus {
 	}
 
 	public void imprimirMenuDiretor() {
-		
+
 		System.out.print("******************* MENU   DIRETOR *******************");
 		menuGeral();
 	}
@@ -212,13 +240,13 @@ public class Menus {
 	public void imprimirMenuPresidente() {
 		System.out.print("******************* MENU PRESIDENTE *******************");
 		menuGeral();
-		
-		/* FALTA FAZER DESAFIO PRESIDENTE
-		 * public static void valorTotalArmazenadoNoBanco(List<Conta> listaContas) {//
-		 * (List<Conta> = tipo de varial da lista, // nome da varial List = ListaContas
-		 * double valorTotalArmazenada = 0.0; for (int i = 0; i < listaContas.size();
-		 * i++) { valorTotalArmazenada = valorTotalArmazenada +
-		 * listaContas.get(i).getSaldo();
+
+		/*
+		 * FALTA FAZER DESAFIO PRESIDENTE public static void
+		 * valorTotalArmazenadoNoBanco(List<Conta> listaContas) {// (List<Conta> = tipo
+		 * de varial da lista, // nome da varial List = ListaContas double
+		 * valorTotalArmazenada = 0.0; for (int i = 0; i < listaContas.size(); i++) {
+		 * valorTotalArmazenada = valorTotalArmazenada + listaContas.get(i).getSaldo();
 		 * 
 		 * System.out.println( i + 1 + "- CPF: " + listaContas.get(i).getCpf() +
 		 * "Saldo: " + listaContas.get(i).getSaldo()); }
@@ -235,7 +263,7 @@ public class Menus {
 			System.out.println("[2] - Deposito");
 			System.out.println("[3] - Transferência");
 			System.out.println("[4] - Sair");
-			
+
 			System.out.print("Resposta: ");
 			this.opcao = leitor.nextInt();
 
@@ -245,7 +273,7 @@ public class Menus {
 				System.out.print("\n************************* SAQUE ************************\n");
 				System.out.print("VALOR DO SAQUE: R$");
 				valorSaque = leitor.nextDouble();
-				
+
 				conta.sacar(valorSaque);
 				System.out.print("Saldo efetuado com sucesso! \nSeu saldo é: R$" + conta.getSaldo());
 				InputOutput.escritor();
@@ -255,7 +283,7 @@ public class Menus {
 				System.out.print("\n*********************** DEPOSITO ***********************\n");
 				System.out.print("VALOR DO DEPOSITO: R$");
 				valorDeposito = leitor.nextDouble();
-				
+
 				conta.depositar(valorDeposito);
 				System.out.print("Depósito efetuado com sucesso! \nSeu saldo é: R$" + conta.getSaldo());
 				break;
@@ -266,7 +294,7 @@ public class Menus {
 				// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				System.out.print("VALOR DA TRANSFERÊNCIA: R$");
 				setValorTransferencia(leitor.nextDouble());
-				
+
 				System.out.print("Insira o cpf da conta destino: ");
 				break;
 
@@ -274,7 +302,7 @@ public class Menus {
 				System.out.println("Opção inválida!");
 				break;
 			}
-			
+
 		} while (this.opcao != 4); // 4 PARA SAIR
 	}
 

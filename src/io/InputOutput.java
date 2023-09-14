@@ -6,8 +6,8 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import conta.Conta;
@@ -26,7 +26,13 @@ public class InputOutput {
 	private FileInputStream arquivo;
 	private BufferedReader br;
 	private Scanner leitor;
-	
+	List<Cliente> clientes;
+	List<Gerente> gerentes;
+	List<Diretor> diretores;
+	List<Presidente> presidentes;
+	List<ContaCorrente> contasCorrente;
+	List<ContaPoupanca> contasPoupanca;
+		
 	// LEITURA DE DADOS
 	@SuppressWarnings("unlikely-arg-type")
 	public FileInputStream leitor(){
@@ -44,13 +50,14 @@ public class InputOutput {
             System.out.println("Erro ao acessar arquivo!");
         }
 		
-		Map<String, Pessoa> clientes = new HashMap<>();
-		Map<String, Conta> contascorrente = new HashMap<>();
-		Map<String, Conta> contaspoupanca = new HashMap<>();
-		Map<String, Pessoa> gerentes = new HashMap<>();
-		Map<String, Pessoa> presidentes = new HashMap<>();
-		Map<String, Pessoa> diretores = new HashMap<>();
-
+		clientes = new ArrayList<Cliente>();
+		gerentes = new ArrayList<Gerente>();
+		presidentes = new ArrayList<Presidente>();
+		diretores = new ArrayList<Diretor>();
+		contasCorrente = new ArrayList<ContaCorrente>();
+		contasPoupanca = new ArrayList<ContaPoupanca>();
+		
+		
 		
 		while (this.leitor.hasNext())throw new NullPointerException(); {
 			
@@ -63,7 +70,8 @@ public class InputOutput {
 				for (int i = 1; i < dados.length; i++) {
 					
 					if (dados[0].equals(TipoAcessoEnum.CLIENTE)) {
-
+//TipoAcessoEnum acesso, String cpf, String senha, String nome, String email, String telefone,
+						//String idAgencia
 						Pessoa[] cliente = new Cliente[100];
 						cliente[i].setCpf(dados[1]);
 						cliente[i].setSenha(dados[2]);
@@ -71,7 +79,7 @@ public class InputOutput {
 						cliente[i].setEmail(dados[4]);
 						cliente[i].setTelefone(dados[5]);
 						cliente[i].setIdAgencia(dados[6]);
-						clientes.put(dados[i], cliente[i]);
+						clientes.add((Cliente) cliente[i]);
 						
 					} else if (dados[0].equals(TipoAcessoEnum.GERENTE)) {
 
@@ -82,7 +90,7 @@ public class InputOutput {
 						gerente[i].setEmail(dados[4]);
 						gerente[i].setTelefone(dados[5]);
 						gerente[i].setIdAgencia(dados[6]);
-						gerentes.put(dados[i], gerente[i]);
+						gerentes.add((Gerente) gerente[i]);
 						
 					} else if (dados[0].equals(TipoAcessoEnum.DIRETOR)) {
 
@@ -93,7 +101,7 @@ public class InputOutput {
 						diretor[i].setEmail(dados[4]);
 						diretor[i].setTelefone(dados[5]);
 						diretor[i].setIdAgencia(dados[6]);
-						diretores.put(dados[i], diretor[i]);
+						diretores.add((Diretor) diretor[i]);
 
 					} else if (dados[0].equals(TipoAcessoEnum.PRESIDENTE)) {
 
@@ -104,7 +112,7 @@ public class InputOutput {
 						presidente[i].setEmail(dados[4]);
 						presidente[i].setTelefone(dados[5]);
 						presidente[i].setIdAgencia(dados[6]);
-						presidentes.put(dados[i], presidente[i]);
+						presidentes.add((Presidente) presidente[i]);
 						
 					} else if (dados[0].equals(TipoContaEnum.CONTA_CORRENTE)) {
 						
@@ -113,7 +121,7 @@ public class InputOutput {
 						cc[i].setNumero(dados[2]);
 						cc[i].setSaldo(Double.parseDouble(dados[3]));
 						cc[i].setIdAgencia(dados[4]);
-						contascorrente.put(dados[i], cc[i]);
+						contasCorrente.add((ContaCorrente) cc[i]);
 
 					} else if (dados[0].equals(TipoContaEnum.CONTA_POUPANCA)) {
 						
@@ -122,11 +130,14 @@ public class InputOutput {
 						cp[i].setNumero(dados[2]);
 						cp[i].setSaldo(Double.parseDouble(dados[3]));
 						cp[i].setIdAgencia(dados[4]);
-						contaspoupanca.put(dados[i], cp[i]);
+						contasPoupanca.add((ContaPoupanca) cp[i]);
 					}
 				}
+				
 			}
 		}
+		
+		
 		
 		return this.arquivo;
 	}
@@ -148,4 +159,55 @@ public class InputOutput {
               System.out.println("Erro ao acessar o arquivo");
       }
 	}
+
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+
+	public List<Gerente> getGerentes() {
+		return gerentes;
+	}
+
+	public void setGerentes(List<Gerente> gerentes) {
+		this.gerentes = gerentes;
+	}
+
+	public List<Diretor> getDiretores() {
+		return diretores;
+	}
+
+	public void setDiretores(List<Diretor> diretores) {
+		this.diretores = diretores;
+	}
+
+	public List<Presidente> getPresidentes() {
+		return presidentes;
+	}
+
+	public void setPresidentes(List<Presidente> presidentes) {
+		this.presidentes = presidentes;
+	}
+
+	public List<ContaCorrente> getContasCorrente() {
+		return contasCorrente;
+	}
+
+	public void setContasCorrente(List<ContaCorrente> contasCorrente) {
+		this.contasCorrente = contasCorrente;
+	}
+
+	public List<ContaPoupanca> getContasPoupanca() {
+		return contasPoupanca;
+	}
+
+	public void setContasPoupanca(List<ContaPoupanca> contasPoupanca) {
+		this.contasPoupanca = contasPoupanca;
+	}
+
+	
+	
 }

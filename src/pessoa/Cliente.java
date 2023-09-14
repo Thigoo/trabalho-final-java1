@@ -11,7 +11,7 @@ public class Cliente extends Pessoa {
 		
 	}	
 
-	public Cliente(enums.TipoAcessoEnum acesso, String cpf, String senha, String nome, String email, String telefone,
+	public Cliente(TipoAcessoEnum acesso, String cpf, String senha, String nome, String email, String telefone,
 			String idAgencia) {
 		super(acesso, cpf, senha, nome, email, telefone, idAgencia);
 	}
