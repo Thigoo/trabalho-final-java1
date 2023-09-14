@@ -1,9 +1,9 @@
 package io;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
@@ -24,15 +24,25 @@ import pessoa.Presidente;
 public class InputOutput {
 
 	private FileInputStream arquivo;
+	private BufferedReader br;
 	private Scanner leitor;
 	
 	// LEITURA DE DADOS
 	@SuppressWarnings("unlikely-arg-type")
-	public FileInputStream leitor() throws FileNotFoundException {
-
-		this.arquivo = new FileInputStream(new File("\\src\\arquivos\\pessoas.txt"));
-
-		this.leitor = new Scanner(arquivo, "UTF-8");
+	public FileInputStream leitor(){
+		System.out.println("Leitor de arquivos");
+//		this.arquivo = new FileInputStream(new File("clientes.txt"));
+//
+//		this.leitor = new Scanner(arquivo, "UTF-8");
+		try {
+            this.br = new BufferedReader( new FileReader("clientes.txt"));
+            while(br.ready()){
+                System.out.println(br.readLine());
+            }
+            br.close();
+        }catch(IOException e) {
+            System.out.println("Erro ao acessar arquivo!");
+        }
 		
 		Map<String, Pessoa> clientes = new HashMap<>();
 		Map<String, Conta> contascorrente = new HashMap<>();
@@ -41,7 +51,8 @@ public class InputOutput {
 		Map<String, Pessoa> presidentes = new HashMap<>();
 		Map<String, Pessoa> diretores = new HashMap<>();
 
-		while (this.leitor.hasNext()) {
+		
+		while (this.leitor.hasNext())throw new NullPointerException(); {
 			
 			String linha = this.leitor.nextLine();
 			

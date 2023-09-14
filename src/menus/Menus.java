@@ -1,10 +1,12 @@
 package menus;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import conta.Conta;
 import conta.ContaPoupanca;
 import conta.SeguroVida;
+import enums.TipoAcessoEnum;
 import io.InputOutput;
 import pessoa.Pessoa;
 
@@ -21,6 +23,8 @@ public class Menus {
 	private Conta conta;
 	private ContaPoupanca cp;
 	private SeguroVida sg;
+	private InputOutput io;
+	private Pessoa pessoa;
 	Double valorContratado = 0.0;
 
 	// CONSTRUTOR
@@ -28,14 +32,14 @@ public class Menus {
 		super();
 	}
 
-	public Menus(Conta conta, Scanner leitor) {
-		super();
-		this.conta = conta;
-		this.leitor = leitor;
-	}
+//	public Menus(Conta conta, Scanner leitor) {
+//		super();
+//		this.conta = conta;
+//		this.leitor = leitor;
+//	}
 
 	// MENU LOGAR - APARECE PARA TODAS AS PESSOAS CADASTRADAS
-	public void logar(Pessoa pessoa) {
+	public void logar() {
 
 		System.out.println("****************************************************");
 		System.out.println("******** Bem vindo(a) ao banco Bancursinho *********");
@@ -55,7 +59,9 @@ public class Menus {
 		System.out.println("                      ▐▄▒▒▒▒▒▒▒▒▐                   ");
 		System.out.println("                      ▌▒▒▒▒▄▄▒▒▒▐                   ");
 		System.out.println("****************************************************\n");
-
+		
+		
+		
 		do {
 			System.out.println("******************* ACESSO À CONTA *****************\n");
 			System.out.print("Por favor, digite seu cpf: ");
@@ -66,20 +72,24 @@ public class Menus {
 
 			// CONFERE SE O CPF E SENHA ESTÃO CERTOS
 			if (this.cpf.equals(pessoa.getCpf()) && this.senha.equals(pessoa.getSenha())) {
-
+				
 				System.out.println("\nLogin efetuado com sucesso!\n");
 				imprimirMenuCliente();
 
 // FALTA PROCURAR SE A PESSOA EXISTE NO NOSSO ARQUIVO E FAZER O IF COM O TIPO DE ACESSO DELA
-//					if (TipoAcessoEnum.CLIENTE.equals(CLIENTE))) {
-//						imprimirMenuCliente();
-//					} else  if (pessoa == gerente) {
-//						imprimirMenuGerente();
-//					} else if (pessoa == diretor) {
-//						imprimirMenuDiretor();
-//					} else {
-//						imprimirMenuPresidente();
-//					}
+					try {
+						if (io.leitor().equals(TipoAcessoEnum.CLIENTE)) {
+							imprimirMenuCliente();
+						} else  if (io.leitor().equals(TipoAcessoEnum.GERENTE)) {
+							imprimirMenuGerente();
+						} else if (io.leitor().equals(TipoAcessoEnum.DIRETOR)) {
+							imprimirMenuDiretor();
+						} else if (io.leitor().equals(TipoAcessoEnum.PRESIDENTE)) {
+							imprimirMenuPresidente();
+						}
+					} catch (Exception e) {
+						System.out.println("Erro logar pessoa!" + e.getMessage());
+					}
 			} else {
 				System.out.println("Acesso negado!\n");
 			}
