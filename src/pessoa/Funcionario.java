@@ -1,10 +1,9 @@
 package pessoa;
 
 import enums.TipoAcessoEnum;
+import enums.TipoAgenciaEnum;
 
 public abstract class Funcionario extends Pessoa {
-	
-	// CONSTRUTOR
 	public Funcionario() {
 		
 	}
