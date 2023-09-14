@@ -65,10 +65,10 @@ public class Menus {
 		do {
 			System.out.println("******************* ACESSO À CONTA *****************\n");
 			System.out.print("Por favor, digite seu cpf: ");
-			this.cpf = this.leitor.nextLine();
+			this.cpf = leitor.next();
 
 			System.out.print("Digite sua senha: ");
-			this.senha = this.leitor.nextLine();
+			this.senha = leitor.next();
 
 			// CONFERE SE O CPF E SENHA ESTÃO CERTOS
 			if (this.cpf.equals(pessoa.getCpf()) && this.senha.equals(pessoa.getSenha())) {
