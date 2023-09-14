@@ -1,6 +1,7 @@
 package pessoa;
 
 import java.util.Date;
+import java.util.Map;
 
 import enums.TipoAcessoEnum;
 import enums.TipoAgenciaEnum;
@@ -99,5 +100,7 @@ public abstract class Pessoa {
 	public Date getDataCadastro() {
 		return dataCadastro;
 	}
+
+	public abstract void add(Pessoa cliente);
 	
 }

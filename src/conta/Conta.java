@@ -12,8 +12,8 @@ import pessoa.Pessoa;
 
 public abstract class Conta {
 	protected String numero;
-	protected Pessoa cpf;
-	protected TipoAgenciaEnum IdAgencia;
+	protected String cpf;
+	protected String IdAgencia;
 	protected double totalGastosDeposito = 0.0;
 	protected double totalGastosSaque = 0.0;
 	protected double totalGastosTransferencia = 0.0;
@@ -30,7 +30,7 @@ public abstract class Conta {
 
 	protected List<Movimentacao> movimentacoes;
 
-	public Conta(TipoContaEnum tipoConta,Pessoa cpf, String numero, double saldoAbertura, TipoAgenciaEnum idAgencia) {
+	public Conta(TipoContaEnum tipoConta,String cpf, String numero, double saldoAbertura, TipoAgenciaEnum idAgencia) {
 		this.cpf = cpf;
 		this.numero = numero;
 		this.IdAgencia = idAgencia;
@@ -46,11 +46,11 @@ public abstract class Conta {
 		movimentacoes.add(movimentacao);
 	}
 
-	public Pessoa getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Pessoa cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
@@ -66,7 +66,7 @@ public abstract class Conta {
 		return TipoConta;
 	}
 
-	public TipoAgenciaEnum getIdAgencia() {
+	public String getIdAgencia() {
 		return IdAgencia;
 	}
 
@@ -142,6 +142,18 @@ public abstract class Conta {
 	}
 
 	public abstract void imprimirExtrato();
+	
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public void setIdAgencia(String dados) {
+		IdAgencia = dados;
+	}
+
+	public void setSaldo(String dados) {
+		this.saldo = dados;
+	}
 
 	@Override
 	public String toString() {
