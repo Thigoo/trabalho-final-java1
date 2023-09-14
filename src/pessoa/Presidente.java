@@ -5,6 +5,7 @@ import enums.TipoAgenciaEnum;
 
 public class Presidente extends Funcionario {
 	
+	// CONSTRUCTOR
 	public Presidente() {
 		
 	}
@@ -14,7 +15,10 @@ public class Presidente extends Funcionario {
 		super(acesso, cpf, senha, nome, email, telefone, idAgencia);
 	}
 
-	
-
-	
+	// CLASSE ABSTRATA PESSOA
+	@Override
+	public void add(Pessoa cliente) {
+		// TODO Auto-generated method stub
+		
+	}
 }

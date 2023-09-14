@@ -5,6 +5,4 @@ public enum TipoAcessoEnum {
 	DIRETOR,
 	PRESIDENTE,
 	CLIENTE;
-	
-	
 }

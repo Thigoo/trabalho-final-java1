@@ -20,8 +20,5 @@ public class App {
 		// escrever o arquivo aqui!!!!!!!!!!!!!!!!!!
 
 		leitor.close();
-		
-		
 	}
-
 }

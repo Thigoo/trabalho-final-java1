@@ -2,13 +2,16 @@ package conta;
 
 public class SeguroVida {
 
+	// ATRIBUTOS
 	private boolean isActive = false;
 	private Double valorContratado = 0.0;
 	private Double tributoSeguro = 0.0;
 
+	// CONTRUTOR
 	public SeguroVida() {
 	}
 
+	// METODOS
 	public boolean contratarSeguroDeVida(Double valorSegurado) {
 		this.valorContratado = valorSegurado * 0.8;
 		this.tributoSeguro = valorSegurado * 0.2;
@@ -16,6 +19,7 @@ public class SeguroVida {
 		return this.isActive;
 	}
 
+	// GETS E SETS
 	public boolean isActive() {
 		return isActive;
 	}
@@ -45,5 +49,4 @@ public class SeguroVida {
 		return "SeguroVida [isActive = " + isActive + ", valorContratado = " + valorContratado + ", tributoSeguro = "
 				+ tributoSeguro + "]";
 	}
-	
 }

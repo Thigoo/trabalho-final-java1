@@ -6,6 +6,7 @@ import enums.TipoAgenciaEnum;
 
 public class Cliente extends Pessoa {	
 	
+	// CONSTRUCTOR
 	public Cliente() {
 		
 	}	
@@ -14,29 +15,26 @@ public class Cliente extends Pessoa {
 			String idAgencia) {
 		super(acesso, cpf, senha, nome, email, telefone, idAgencia);
 	}
-
-
-
+	
+	// DESAFIO SEGURO DE VIDA
 	private SeguroVida seguroVida = new SeguroVida();
 	
+	// GETS E SETS
 	public SeguroVida getSeguroVida() {
 		return seguroVida;
 	}
-		
 
+	public void setSeguroVida(SeguroVida seguroVida) {
+		this.seguroVida = seguroVida;
+	}
+
+	@Override
+	public void add(Pessoa cliente) {
+	
+	}
 
 	@Override
 	public String toString() {
 		return "\nCliente [cpf=" + cpf + ", email=" + email + ", nome=" + nome + ", telefone=" + telefone + "]";
 	}
-
-	public String TipoAcessoEnum(String string) {
-		return null;
-	}
-
-	public String setSenha(String string) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

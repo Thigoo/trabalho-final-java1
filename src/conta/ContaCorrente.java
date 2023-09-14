@@ -8,13 +8,15 @@ import enums.TipoContaEnum;
 import pessoa.Pessoa;
 
 public class ContaCorrente extends Conta {
-	
-	public ContaCorrente(TipoContaEnum tipoConta, Pessoa cpf, String numero, double saldoAbertura,  TipoAgenciaEnum idAgencia) {
+
+	public ContaCorrente(TipoContaEnum tipoConta, String cpf, String numero, double saldoAbertura, String idAgencia) {
 		super(tipoConta, cpf, numero, saldoAbertura, idAgencia);
 	}
 
+	// METODOS
 	@Override
 	public void imprimirExtrato() {
+		
 		System.out.println("**************************************************");
         System.out.println("**************** Extrato Bancário ****************");
         System.out.println("****************  Conta Corrente  ****************");
@@ -23,14 +25,14 @@ public class ContaCorrente extends Conta {
 		System.out.println("CPF do Titular "+ this.getCpf());
 		System.out.println("**************************************************");
 		
-		movimentacoes.forEach(movimentacao ->{
+		movimentacoes.forEach(movimentacao -> {
 			String data = ConverteData.converteDataParaDataHora(movimentacao.getDataHora());
 			System.out.println(data + " - " + movimentacao.getTipo() + " - R$" + movimentacao.getValor());
 		});
+		
 		System.out.println();
 		System.out.println("Saldo R$ " + this.saldo);
 		System.out.println();
 		System.out.println("**************************************************");
 	}
-
 }

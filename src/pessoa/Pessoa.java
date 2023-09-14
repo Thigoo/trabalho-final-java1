@@ -1,17 +1,13 @@
 package pessoa;
 
 import java.util.Date;
-import java.util.Map;
 
 import enums.TipoAcessoEnum;
-import enums.TipoAgenciaEnum;
-import enums.TipoContaEnum;
 
 public abstract class Pessoa {
 	
+	// ATRIBUTOS
 	protected String nome;
-	
-
 	protected String senha;
 	protected String cpf;
 	protected String email;
@@ -19,7 +15,9 @@ public abstract class Pessoa {
 	protected Date dataCadastro;
 	protected TipoAcessoEnum Acesso;
 	public String IdAgencia;
+	public abstract void add(Pessoa cliente);
 	
+	// CONSTRUTOR
 	public Pessoa() {
 	}
 	
@@ -34,23 +32,11 @@ public abstract class Pessoa {
 		this.IdAgencia = idAgencia;
 	}
 
-	
+	// GETS E SETS
 	public TipoAcessoEnum getAcesso() {
 		return Acesso;
 	}
 	
-	
-	
-
-//	public void setIdAgencia(String dados) {
-//		IdAgencia = dados;
-//	}
-//
-//	public TipoAgenciaEnum getIdAgencia() {
-//		return IdAgencia;
-//	}
-	
-
 	public String getNome() {
 		return nome;
 	}
@@ -70,8 +56,6 @@ public abstract class Pessoa {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	
-	
 	
 	public void setSenha(String senha) {
 		this.senha = senha;
@@ -100,7 +84,4 @@ public abstract class Pessoa {
 	public Date getDataCadastro() {
 		return dataCadastro;
 	}
-
-	public abstract void add(Pessoa cliente);
-	
 }

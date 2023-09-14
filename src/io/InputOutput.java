@@ -25,12 +25,15 @@ public class InputOutput {
 
 	private FileInputStream arquivo;
 	private Scanner leitor;
-
+	
+	// LEITURA DE DADOS
+	@SuppressWarnings("unlikely-arg-type")
 	public FileInputStream leitor() throws FileNotFoundException {
 
 		this.arquivo = new FileInputStream(new File("\\src\\arquivos\\pessoas.txt"));
 
 		this.leitor = new Scanner(arquivo, "UTF-8");
+		
 		Map<String, Pessoa> clientes = new HashMap<>();
 		Map<String, Conta> contascorrente = new HashMap<>();
 		Map<String, Conta> contaspoupanca = new HashMap<>();
@@ -39,11 +42,15 @@ public class InputOutput {
 		Map<String, Pessoa> diretores = new HashMap<>();
 
 		while (this.leitor.hasNext()) {
+			
 			String linha = this.leitor.nextLine();
+			
 			if (linha != null && !linha.isEmpty()) {
 				String[] dados = linha.split(";");
 
+				// CRIAÇÃO DOS OBJETOS POR VETOR
 				for (int i = 1; i < dados.length; i++) {
+					
 					if (dados[0].equals(TipoAcessoEnum.CLIENTE)) {
 
 						Pessoa[] cliente = new Cliente[100];
@@ -105,16 +112,15 @@ public class InputOutput {
 						cp[i].setSaldo(Double.parseDouble(dados[3]));
 						cp[i].setIdAgencia(dados[4]);
 						contaspoupanca.put(dados[i], cp[i]);
-						
 					}
 				}
 			}
 		}
+		
 		return this.arquivo;
 	}
-	
-	
 
+	// SAIDA DE DADOS
 	public static void escritor() {
 		try {
           BufferedWriter out = new BufferedWriter( new FileWriter("movimentacaoSaque.txt"));
