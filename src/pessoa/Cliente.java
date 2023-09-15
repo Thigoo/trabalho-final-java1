@@ -2,9 +2,9 @@ package pessoa;
 
 import conta.SeguroVida;
 
-public class Cliente extends Pessoa implements Comparable<Cliente> {	
+public class Cliente extends Pessoa implements Comparable<Cliente> {	// COMPARABLE EM ORDEM ALFABETICA
 	
-	// CONSTRUCTOR
+	// CONSTRUCTOR 
 	public Cliente() {
 		super();		
 	}	
@@ -24,6 +24,6 @@ public class Cliente extends Pessoa implements Comparable<Cliente> {
 
 	@Override
 	public int compareTo(Cliente c) {
-		return this.nome.compareTo(c.getNome());
+		return this.nome.compareTo(c.getNome()); // METODO DO COMPARABLE
 	}
 }

@@ -16,8 +16,8 @@ public class ContaPoupanca extends Conta {
 	// METODOS
 	public void calcularRendimentoPoupanca(double valorDinheiro, int numDias) {
 
-		Double valorInicial = Double.valueOf(valorDinheiro);
-		double taxaJurosDia = 0.00034;
+		Double valorInicial = Double.valueOf(valorDinheiro); // CLONA O VALODR DINHEIRO
+		double taxaJurosDia = 0.00034; // TAXA SELIC 13% / 12  ANO/ 30 DIA
 
 		for (int i = 0; i < numDias; i++) {
 

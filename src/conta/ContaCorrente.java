@@ -8,6 +8,7 @@ import enums.TipoContaEnum;
 
 public class ContaCorrente extends Conta {
 
+	// CONSTRUTOR
 	public ContaCorrente(TipoContaEnum tipoConta, String cpf, String numero, double saldoAbertura, TipoAgenciaEnum tipoAgencia) {
 		super(tipoConta, cpf, numero, saldoAbertura, tipoAgencia);
 	}
@@ -15,16 +16,17 @@ public class ContaCorrente extends Conta {
 	// METODOS
 	@Override
 	public void imprimirExtrato() {
-		
+		// SO OCORRE SE FOR NA CONTA CORRENTE
 		System.out.println("**************************************************");
         System.out.println("**************** Extrato Bancário ****************");
         System.out.println("****************  Conta Corrente  ****************");
         System.out.println("**************************************************");
-        System.out.println("Data e hora: "+ ConverteData.converteDataParaDataHora(new Date()));
+        System.out.println("Data e hora: "+ ConverteData.converteDataParaDataHora(new Date())); // CONVERTE A DATA PARA O FORMATO BR
 		System.out.println("CPF do Titular "+ this.getCpf());
 		System.out.println("**************************************************");
 		
-		movimentacoes.forEach(movimentacao -> {
+		movimentacoes.forEach(movimentacao -> { //CADA MOVIMENTACAO ELE EXECUTA ALGO NOVO
+
 			String data = ConverteData.converteDataParaDataHora(movimentacao.getDataHora());
 			System.out.println(data + " - " + movimentacao.getTipo() + " - R$" + movimentacao.getValor());
 		});

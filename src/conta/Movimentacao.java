@@ -4,7 +4,7 @@ import java.util.Date;
 
 import enums.TipoMovimentacaoEnum;
 
-public class Movimentacao {
+public class Movimentacao { 
 
 	// ATRIBUTOS
 	private TipoMovimentacaoEnum tipo;

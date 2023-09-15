@@ -17,7 +17,7 @@ public enum TipoAgenciaEnum {
 		return idAgencia;
 	}
 	
-	public static TipoAgenciaEnum fromValue(int value) {
+	public static TipoAgenciaEnum fromValue(int value) { // CRIA UMA AGENCIA A PARTIR DE UM VALOR
 		TipoAgenciaEnum tipoAgenciaEnum;
 		switch (value) {
 		case 13:

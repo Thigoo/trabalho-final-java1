@@ -13,8 +13,8 @@ public class SeguroVida {
 
 	// METODOS
 	public boolean contratarSeguroDeVida(Double valorSegurado) {
-		this.valorContratado = valorSegurado * 0.8;
-		this.tributoSeguro = valorSegurado * 0.2;
+		this.valorContratado = valorSegurado * 0.8; // VALOR Q VAI RETORNAR
+		this.tributoSeguro = valorSegurado * 0.2; // VALOR DA TAXA
 		this.isActive = true;
 		return this.isActive;
 	}
@@ -24,7 +24,7 @@ public class SeguroVida {
 		return isActive;
 	}
 
-	public void setActive(boolean isActive) {
+	public void setActive(boolean isActive) { // SE A PESSOA QUER OU NAO
 		this.isActive = isActive;
 	}
 

@@ -4,7 +4,7 @@ import java.util.Date;
 
 import enums.TipoCargoEnum;
 
-public abstract class Pessoa {
+public abstract class Pessoa { //  CLASSE PAI
 
 	// ATRIBUTOS
 	protected String nome;

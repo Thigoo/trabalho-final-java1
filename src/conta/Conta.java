@@ -29,7 +29,7 @@ public abstract class Conta {
 	private final double TAXA = 0.1;
 	protected List<Movimentacao> movimentacoes;
 
-	// CONSTRUTOR
+	// CONSTRUTOR CONTA
 	public Conta(TipoContaEnum tipoConta, String cpf, String numero, double saldoAbertura,
 			TipoAgenciaEnum tipoAgencia) {
 		this.cpf = cpf;
@@ -44,18 +44,19 @@ public abstract class Conta {
 	// METODOS
 	public void sacar(double valor, boolean isTransferencia) {
 		if (valor < 0) {
-			throw new ValorNegativoException("Não é possível sacar valor negativo");
+			throw new ValorNegativoException("Não é possível sacar valor negativo"); 
 		}
 		
-		if ((valor + TAXA_SAQUE) > this.saldo) {
+		if ((valor + TAXA_SAQUE) > this.saldo) { // SACOU MENOS DO QUE TEM
 			throw new SaldoNegativo("Saldo insuficiente, Saldo: R$" + this.saldo);
 		}
 
 		this.saldo -= (valor + TAXA_SAQUE);
-		if (!isTransferencia) {
+		if (!isTransferencia) { // SE ELE NAO FOR UMA TRANSFERENCIA
 			totalGastosSaque += TAXA_SAQUE;			
 		}
-
+		
+		// CRIA MOVIMENTACAO - TOTAL DE GASTOS
 		Movimentacao movimentacao = new Movimentacao(TipoMovimentacaoEnum.SAIDA, new Date(), valor + TAXA_SAQUE);
 		movimentacoes.add(movimentacao);
 	}
@@ -82,22 +83,24 @@ public abstract class Conta {
 	public void transferir(double valor, Conta contaDestino) {
 
 		sacar(valor + TAXA, true);// PQ no metodo sacar já possui uma debitação de 0.1.
-		contaDestino.depositar(valor + TAXA, true);
+		contaDestino.depositar(valor + TAXA, true); // PEGA A TAXA DO SACAR MAIS A DO TRANSFERIR
 		totalGastosTransferencia += TAXA_TRANSFERENCIA;
 		System.out.println(totalGastosTransferencia);
 	}
-
+	
+	// O relatório de tributação deverá apresentar o total gasto nas operações até o momento do relatório.
 	public double obterTotalGastoOperacoes() {
 		return totalGastosDeposito + totalGastosSaque + totalGastosTransferencia;
 	}
 
+	// Saldo. O sistema deverá imprimir o saldo na tela do terminal
 	public double obterSaldo() {
 		return this.saldo;
 	}
 
 	public abstract void imprimirExtrato();
 
-	// SETS E GETS
+	/////////////////////////////////// SETS E GETS
 	public String getNumero() {
 		return numero;
 	}
@@ -194,6 +197,7 @@ public abstract class Conta {
 		return TAXA;
 	}
 
+	///////////////////////////////////to string
 	@Override
 	public String toString() {
 		return "Conta [numero=" + numero + ", cpf=" + cpf + ", tipoAgencia=" + tipoAgencia + ", totalGastosDeposito="
