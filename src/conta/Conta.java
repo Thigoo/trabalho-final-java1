@@ -2,12 +2,14 @@ package conta;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.InputMismatchException;
 import java.util.List;
 
 import enums.TipoAgenciaEnum;
 import enums.TipoContaEnum;
 import enums.TipoMovimentacaoEnum;
+import exception.SaldoNegativo;
+import exception.TaxaMinimaException;
+import exception.ValorNegativoException;
 
 public abstract class Conta {
 
@@ -36,17 +38,17 @@ public abstract class Conta {
 		this.saldo = saldoAbertura;
 		this.dataCadastro = new Date();
 		this.TipoConta = tipoConta;
-
 		movimentacoes = new ArrayList<Movimentacao>();
-		Movimentacao movimentacao = new Movimentacao(TipoMovimentacaoEnum.SALDO_ABERTURA, new Date(), saldoAbertura);
-		movimentacoes.add(movimentacao);
 	}
 
 	// METODOS
 	public void sacar(double valor, boolean isTransferencia) {
-
+		if (valor < 0) {
+			throw new ValorNegativoException("Não é possível sacar valor negativo");
+		}
+		
 		if ((valor + TAXA_SAQUE) > this.saldo) {
-			throw new InputMismatchException("Saldo insuficiente, Saldo: R$" + this.saldo);
+			throw new SaldoNegativo("Saldo insuficiente, Saldo: R$" + this.saldo);
 		}
 
 		this.saldo -= (valor + TAXA_SAQUE);
@@ -54,14 +56,17 @@ public abstract class Conta {
 			totalGastosSaque += TAXA_SAQUE;			
 		}
 
-		Movimentacao movimentacao = new Movimentacao(TipoMovimentacaoEnum.SAIDA, new Date(), valor);
+		Movimentacao movimentacao = new Movimentacao(TipoMovimentacaoEnum.SAIDA, new Date(), valor + TAXA_SAQUE);
 		movimentacoes.add(movimentacao);
 	}
 
 	public void depositar(double valor, boolean isTransferencia) {
-
+		if (valor < 0) {
+			throw new ValorNegativoException("Não é possível depositar valor negativo");
+		}
+		
 		if (TAXA_DEPOSITO > valor) {
-			throw new InputMismatchException(
+			throw new TaxaMinimaException(
 					"O valor mínimo para realizar o deposito tem que ser maior que o valor da taxa R$ 0.10.");
 		}
 
@@ -70,7 +75,7 @@ public abstract class Conta {
 			totalGastosDeposito += TAXA_DEPOSITO;
 		}
 		
-		Movimentacao movimentacao = new Movimentacao(TipoMovimentacaoEnum.ENTRADA, new Date(), valor);
+		Movimentacao movimentacao = new Movimentacao(TipoMovimentacaoEnum.ENTRADA, new Date(), valor - TAXA_DEPOSITO);
 		movimentacoes.add(movimentacao);
 	}
 

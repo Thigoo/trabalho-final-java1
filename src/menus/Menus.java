@@ -7,9 +7,14 @@ import java.util.Scanner;
 import conta.Conta;
 import enums.TipoAgenciaEnum;
 import enums.TipoCargoEnum;
+import exception.SaldoNegativo;
+import exception.TaxaMinimaException;
+import exception.ValorNegativoException;
+import io.LeitorArquivo;
 import pessoa.Cliente;
 import pessoa.Gerente;
 import pessoa.Pessoa;
+import util.FormatadorCasasDecimais;
 import util.GeradorRelatorio;
 
 public class Menus {
@@ -160,7 +165,7 @@ public class Menus {
 	// MENU QUE TODOS TEM ACESSO
 	public void menuGeral() {
 
-		System.out.println("************************ MENU **********************\n");
+		System.out.println("\n************************ MENU **********************\n");
 
 		do {
 			System.out.println("[1] - Movimentações na conta");
@@ -211,6 +216,12 @@ public class Menus {
 			}
 
 		} while (this.opcao != 9); // 3 PARA SAIR
+		if (this.opcao == 9) {
+			this.pessoaLogada = null;
+			this.contaPessoaLogada = null;
+			this.usuarioLogado = false;
+			logar();
+		}
 	}
 
 	// MENU QUE SOMENTE O CLIENTE TEM ACESSO
@@ -254,24 +265,39 @@ public class Menus {
 				System.out.print("\n************************* SAQUE ************************\n");
 				System.out.print("VALOR DO SAQUE: R$");
 				valorSaque = leitor.nextDouble();
-
-				contaPessoaLogada.sacar(valorSaque, false);
-				System.out.print("Saldo efetuado com sucesso! \nSeu saldo é: R$" + contaPessoaLogada.getSaldo());
+				try {
+					contaPessoaLogada.sacar(valorSaque, false);
+					System.out.print("Saldo efetuado com sucesso! \nSeu saldo é: R$" + FormatadorCasasDecimais.formatarCasasDecimais(contaPessoaLogada.getSaldo(), 2));
+					LeitorArquivo.salvarDados(pessoasList, contasList);					
+				} catch (ValorNegativoException vn) {
+					System.out.println(vn.getMessage()+"\n");
+				} catch (SaldoNegativo sn) {
+					System.out.println(sn.getMessage()+"\n");
+				} catch (Exception e) {
+					System.out.println("Erro inesperado do sistema.");
+				}
 				break;
 
 			case 2:
 				System.out.print("\n*********************** DEPOSITO ***********************\n");
 				System.out.print("VALOR DO DEPOSITO: R$");
 				valorDeposito = leitor.nextDouble();
-
-				contaPessoaLogada.depositar(valorDeposito, false);
-				System.out.print("Depósito efetuado com sucesso! \nSeu saldo é: R$" + contaPessoaLogada.getSaldo());
+				
+				try {					
+					contaPessoaLogada.depositar(valorDeposito, false);
+					System.out.print("Depósito efetuado com sucesso! \nSeu saldo é: R$" + FormatadorCasasDecimais.formatarCasasDecimais(contaPessoaLogada.getSaldo(), 2));
+					LeitorArquivo.salvarDados(pessoasList, contasList);
+				} catch (ValorNegativoException vn) {
+					System.out.println(vn.getMessage()+"\n");
+				} catch (TaxaMinimaException tm) {
+					System.out.println(tm.getMessage()+"\n");
+				} catch (Exception e) {
+					System.out.println("Erro inesperado do sistema.");
+				}
 				break;
 
 			case 3:
 				System.out.print("\n********************* TRANSFERÊNCIA ********************\n");
-				// FALTA PASSAR O DINHEIRO PARA A CONTA DE DESTINO
-				// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				System.out.print("VALOR DA TRANSFERÊNCIA: R$");
 				valorTransferencia = leitor.nextDouble();
 
@@ -292,8 +318,19 @@ public class Menus {
 					}
 				} while (!contaEncontrada);
 				
-				contaPessoaLogada.transferir(valorTransferencia, contaDestino);
-				System.out.print("Transferencia efetuado com sucesso! \nSeu saldo é: R$" + contaPessoaLogada.getSaldo());
+				try {
+					contaPessoaLogada.transferir(valorTransferencia, contaDestino);
+					System.out.print("Transferencia efetuado com sucesso! \nSeu saldo é: R$" + FormatadorCasasDecimais.formatarCasasDecimais(contaPessoaLogada.getSaldo(), 2));
+					LeitorArquivo.salvarDados(pessoasList, contasList);					
+				} catch (ValorNegativoException vn) {
+					System.out.println(vn.getMessage()+"\n");
+				} catch (TaxaMinimaException tm) {
+					System.out.println(tm.getMessage()+"\n");
+				} catch (SaldoNegativo sn) {
+					System.out.println(sn.getMessage()+"\n");
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
 				break;
 			case 4: // voltar
 				break;
