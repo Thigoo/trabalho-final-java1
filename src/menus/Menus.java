@@ -28,7 +28,7 @@ public class Menus {
 	private List<Conta> contasList;
 	Pessoa pessoaLogada;
 	private Conta contaPessoaLogada;
-	private int opcao;
+	private String opcao;
 
 	private double valorSaque = 0.0;
 	private double valorDeposito = 0.0;
@@ -176,16 +176,16 @@ public class Menus {
 			System.out.println("[9] - Sair");
 
 			System.out.print("Resposta: ");
-			this.opcao = this.leitor.nextInt();
+			this.opcao = this.leitor.next();
 
 			switch (this.opcao) {
-				case 1: // Movimentações na conta
+				case "1": // Movimentações na conta
 					movConta();
 					break;
-				case 2: // Relatórios
+				case "2": // Relatórios
 					relatoriosConta();
 					break;
-				case 3: // Movimentações na conta
+				case "3": // Movimentações na conta
 					if (!TipoCargoEnum.CLIENTE.equals(pessoaLogada.getTipoCargo())) {
 						System.out.println("Opção inválida!");
 						break;
@@ -193,10 +193,10 @@ public class Menus {
 					System.out.println("\n************* CONTRATAR SEGURO DE VIDA *************\n");
 					System.out.println("Gostaria de contratar nosso seguro?");
 					System.out.println("\n[1] - Sim \n[2] - Não");
-					opcao = leitor.nextInt();
+					opcao = leitor.next();
 
 					// SE O CLIENTE DESEJAR EFETUAR O SEGURO DE VIDA
-					if (opcao == 1) {
+					if (opcao.equals("1")) {
 						if (((Cliente) (pessoaLogada)).getSeguroVida().isActive()) {
 							System.out.println("\nVocê já possui um Seguro de Vida Contratado");
 						} else {
@@ -207,7 +207,7 @@ public class Menus {
 						}
 					} 
 					break;
-				case 9: // Sair
+				case "9": // Sair
 					System.out.println("\nObrigado por utilizar o nosso sistema!");
 					break;
 				default:
@@ -215,8 +215,8 @@ public class Menus {
 					break;
 			}
 
-		} while (this.opcao != 9); // 3 PARA SAIR
-		if (this.opcao == 9) {
+		} while (!this.opcao.equals("9")); // 3 PARA SAIR
+		if (this.opcao.equals("9")) {
 			this.pessoaLogada = null;
 			this.contaPessoaLogada = null;
 			this.usuarioLogado = false;
@@ -257,11 +257,11 @@ public class Menus {
 			System.out.println("[4] - Voltar");
 
 			System.out.print("Resposta: ");
-			this.opcao = leitor.nextInt();
+			this.opcao = leitor.next();
 
 			switch (this.opcao) {
 
-			case 1:
+			case "1":
 				System.out.print("\n************************* SAQUE ************************\n");
 				System.out.print("VALOR DO SAQUE: R$");
 				valorSaque = leitor.nextDouble();
@@ -278,7 +278,7 @@ public class Menus {
 				}
 				break;
 
-			case 2:
+			case "2":
 				System.out.print("\n*********************** DEPOSITO ***********************\n");
 				System.out.print("VALOR DO DEPOSITO: R$");
 				valorDeposito = leitor.nextDouble();
@@ -296,7 +296,7 @@ public class Menus {
 				}
 				break;
 
-			case 3:
+			case "3":
 				System.out.print("\n********************* TRANSFERÊNCIA ********************\n");
 				System.out.print("VALOR DA TRANSFERÊNCIA: R$");
 				valorTransferencia = leitor.nextDouble();
@@ -332,16 +332,16 @@ public class Menus {
 					// TODO: handle exception
 				}
 				break;
-			case 4: // voltar
+			case "4": // voltar
 				break;
 			default:
 				System.out.println("Opção inválida!");
 				break;
 			}
 
-		} while (this.opcao != 4); // 4 PARA VOLTAR
+		} while (!this.opcao.equals("4")); // 4 PARA VOLTAR
 		
-		if (this.opcao == 4) {
+		if (this.opcao.equals("4")) {
 			menuGeral();
 		}
 
@@ -369,16 +369,16 @@ public class Menus {
 			System.out.println("[9] - Voltar");
 			
 			System.out.print("Resposta: ");
-			this.opcao = this.leitor.nextInt();
+			this.opcao = this.leitor.next();
 			
 			String nomeArquivo = "";
 			switch (this.opcao) {
-				case 1: // Mostrar saldo
+				case "1": // Mostrar saldo
 					System.out.println("\n*********************** SALDO **********************\n");
 					System.out.println("Saldo atual: R$" + contaPessoaLogada.getSaldo());
 					break;
 	
-				case 2: // Relatório de tributação da conta corrente
+				case "2": // Relatório de tributação da conta corrente
 					if (TipoCargoEnum.CLIENTE.equals(pessoaLogada.getTipoCargo())) {
 						nomeArquivo = GeradorRelatorio.tributacaoContaCorrente(contaPessoaLogada, ((Cliente) (pessoaLogada)).getSeguroVida());
 					} else {
@@ -387,7 +387,7 @@ public class Menus {
 					System.out.print("Relatório gerado com sucesso. Verifique o arquivo " + nomeArquivo + " para conferência.");
 					break;
 	
-				case 3: // Relatório de rendimento da poupança
+				case "3": // Relatório de rendimento da poupança
 					System.out.println("Quanto você deseja investir? ");
 					double valorInvest = leitor.nextDouble();
 					System.out.println("Por quanto tempo? (EM DIAS)");
@@ -396,7 +396,7 @@ public class Menus {
 					nomeArquivo = GeradorRelatorio.rendimentoPoupanca(valorInvest, numDias);
 					System.out.print("Relatório gerado com sucesso. Verifique o arquivo " + nomeArquivo + " para conferência.");
 					break;
-				case 4: // Relatório do número de contas na Agência
+				case "4": // Relatório do número de contas na Agência
 					if (TipoCargoEnum.CLIENTE.equals(pessoaLogada.getTipoCargo())) {
 						System.out.println("Opção inválida!");
 						break;
@@ -404,7 +404,7 @@ public class Menus {
 					nomeArquivo = GeradorRelatorio.numeroContasPorAguencia(contasList, ((Gerente) (pessoaLogada)).getTipoAgencia()); // Realizando um cast da pessoa logada para um gerente para ter acesso as propriedades especificas
 					System.out.print("Relatório gerado com sucesso. Verifique o arquivo " + nomeArquivo + " para conferência.");
 					break;
-				case 5: // Relatório com as informações de Nome, CPF e Agência de todos os clientes do sistema em ordem alfabética
+				case "5": // Relatório com as informações de Nome, CPF e Agência de todos os clientes do sistema em ordem alfabética
 					if (TipoCargoEnum.CLIENTE.equals(pessoaLogada.getTipoCargo()) ||
 							TipoCargoEnum.GERENTE.equals(pessoaLogada.getTipoCargo())) {
 						System.out.println("Opção inválida!");
@@ -425,7 +425,7 @@ public class Menus {
 					nomeArquivo = GeradorRelatorio.clientesNoBanco(clientes);
 					System.out.print("Relatório gerado com sucesso. Verifique o arquivo " + nomeArquivo + " para conferência.");
 					break;
-				case 6: // Relatório com o valor total do capital armazenado no banco.
+				case "6": // Relatório com o valor total do capital armazenado no banco.
 					if (!TipoCargoEnum.PRESIDENTE.equals(pessoaLogada.getTipoCargo())) {
 						System.out.println("Opção inválida!");
 						break;
@@ -433,24 +433,24 @@ public class Menus {
 					nomeArquivo = GeradorRelatorio.capitalTotalArmazenado(contasList);
 					System.out.print("Relatório gerado com sucesso. Verifique o arquivo " + nomeArquivo + " para conferência.");
 					break;
-				case 9: // Voltar
+				case "9": // Voltar
 					break;
 				default:
 					System.out.println("Opção inválida!");
 					break;
 			}
-		} while (this.opcao != 9); // 9 PARA VOLTAR
-		if (this.opcao == 9) {
+		} while (!this.opcao.equals("9")); // 9 PARA VOLTAR
+		if (this.opcao.equals("9")) {
 			menuGeral();
 		}
 	}
 	
 	// GETS E SETS
-	public int getOpcao() {
+	public String getOpcao() {
 		return opcao;
 	}
 
-	public void setOpcao(int opcao) {
+	public void setOpcao(String opcao) {
 		this.opcao = opcao;
 	}
 
