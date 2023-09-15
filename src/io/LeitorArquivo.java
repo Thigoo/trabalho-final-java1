@@ -27,15 +27,6 @@ public class LeitorArquivo {
 
 	private static final String NOME_ARQUIVO_LEITURA = "dados.txt";
 	
-	private List<ContaPoupanca> contaPoupancaList = new ArrayList<ContaPoupanca>();
-	private List<ContaCorrente> contaCorrenteList = new ArrayList<ContaCorrente>();
-	private List<Conta> contaList = new ArrayList<Conta>(); // lista geral de conta
-	private List<Cliente> clienteList = new ArrayList<Cliente>();
-	private List<Gerente> gerenteList = new ArrayList<Gerente>();
-	private List<Diretor> diretorList = new ArrayList<Diretor>();
-	private List<Presidente> presidenteList = new ArrayList<Presidente>();
-	private List<Pessoa> pessoaList = new ArrayList<Pessoa>(); // lista geral de pessoa
-
 	// LEITURA DE DADOS
 	public static List<Conta> lerContas() {
 		
@@ -226,38 +217,6 @@ public class LeitorArquivo {
 			
 			System.out.println("Erro ao Salvar os Dados");
 		}
-	}
-
-	public List<ContaPoupanca> getContaPoupancaList() {
-		return contaPoupancaList;
-	}
-
-	public List<ContaCorrente> getContaCorrenteList() {
-		return contaCorrenteList;
-	}
-
-	public List<Conta> getContaList() {
-		return contaList;
-	}
-
-	public List<Cliente> getClienteList() {
-		return clienteList;
-	}
-
-	public List<Gerente> getGerenteList() {
-		return gerenteList;
-	}
-
-	public List<Diretor> getDiretorList() {
-		return diretorList;
-	}
-
-	public List<Presidente> getPresidenteList() {
-		return presidenteList;
-	}
-
-	public List<Pessoa> getPessoaList() {
-		return pessoaList;
 	}
 
 }
