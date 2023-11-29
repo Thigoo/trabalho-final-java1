@@ -3,6 +3,7 @@
 
 Trabalho final de Programação Orientada a Objeto desenvolvido para o Serratec (grupo 06)
 
+<img src="https://github.com/Thigoo/trabalho-final-java1/assets/90783156/af560512-5dc6-41f7-85ed-ce78e251dc40" width=400></img>
 
 ## Participantes
 
